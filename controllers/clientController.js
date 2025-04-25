@@ -52,3 +52,24 @@ exports.enrollClientToPrograms = async (req, res) => {
     res.status(500).json({ message: 'Error enrolling client', error: err.message });
   }
 };
+exports.getPublicClientProfile = async (req, res) => {
+  try {
+    const client = await Client.findById(req.params.id)
+      .populate('enrolledPrograms', 'name'); // only show program names
+
+    if (!client) return res.status(404).json({ message: 'Client not found' });
+
+    // Strip down what we return
+    const publicData = {
+      name: client.name,
+      age: client.age,
+      gender: client.gender,
+      enrolledPrograms: client.enrolledPrograms
+    };
+
+    res.status(200).json(publicData);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching public client profile', error: err.message });
+  }
+};
+
