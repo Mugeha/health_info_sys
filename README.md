@@ -77,7 +77,7 @@ Test get clients api with postman
 
 GET /api/clients/:id – View client profile
 Test get client profile with postman
-![GetClientProfile](Images/getClientProfile)
+![GetClientProfile](Images/GetClientProfile.png)
 
 
 POST /api/clients/:id/enroll – Enroll client in programs
@@ -85,6 +85,7 @@ Test enroll client in a program with postman
 ![EnrollInProgram](Images/EnrollInProgram.png)
 🌐 Public
 GET /api/public/client/:id – View public client profile (no auth)
+![Public Profile Preview](Images/getPublicProfile.png)
 
 🧪 Sample Request: Enroll a Client
 
