@@ -26,14 +26,11 @@ A basic Health Information Management System for doctors to manage clients and e
 ## 📦 Setup Instructions
 
 1. Clone the repo
-```bash
+bash
 git clone https://github.com/your-username/health-info-system.git
 cd health-info-system
 Install dependencies
 
-bash
-Copy
-Edit
 npm install
 Create a .env file:
 
@@ -56,7 +53,7 @@ POST /api/auth/signup – Register doctor
 POST /api/auth/login – Login doctor
 
 Test Register doctor with postman
-![Register doctor](HEALTH-INFO-SYSTEM/Images/Registerdoctor.png)
+![Register doctor](Images/Registerdoctor.png)
 Test Login doctor with postman
 ![Login doctor](Images/login.png)
 
