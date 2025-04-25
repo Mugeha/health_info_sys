@@ -56,7 +56,7 @@ POST /api/auth/signup – Register doctor
 POST /api/auth/login – Login doctor
 
 Test Register doctor with postman
-![Register doctor](Images/Registerdoctor.png)
+![Register doctor](HEALTH-INFO-SYSTEM/Images/Registerdoctor.png)
 Test Login doctor with postman
 ![Login doctor](Images/login.png)
 
