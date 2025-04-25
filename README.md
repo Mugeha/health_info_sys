@@ -76,6 +76,9 @@ Test get clients api with postman
 ![GetClients](Images/getClients.png)
 
 GET /api/clients/:id – View client profile
+Test get client profile with postman
+![GetClientProfile](Images/getClientProfile)
+
 
 POST /api/clients/:id/enroll – Enroll client in programs
 Test enroll client in a program with postman
