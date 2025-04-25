@@ -58,12 +58,12 @@ POST /api/auth/login – Login doctor
 Test Register doctor with postman
 ![Register doctor](Images/Registerdoctor.png)
 Test Login doctor with postman
-![Login doctor](login.png)
+![Login doctor](Images/login.png)
 
 💊 Programs
 POST /api/programs – Create program
 Test Create Program with postman
-![Create Program](CreateProgram.png)
+![Create Program](Images/CreateProgram.png)
 
 GET /api/programs – Get all programs
 
@@ -72,13 +72,13 @@ POST /api/clients – Register client
 
 GET /api/clients – Search/list clients
 Test get clients api with postman
-![GetClients](getClients.png)
+![GetClients](Images/getClients.png)
 
 GET /api/clients/:id – View client profile
 
 POST /api/clients/:id/enroll – Enroll client in programs
 Test enroll client in a program with postman
-![EnrollInProgram](EnrollInProgram.png)
+![EnrollInProgram](Images/EnrollInProgram.png)
 🌐 Public
 GET /api/public/client/:id – View public client profile (no auth)
 
