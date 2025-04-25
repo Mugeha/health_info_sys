@@ -85,6 +85,7 @@ Test enroll client in a program with postman
 ![EnrollInProgram](Images/EnrollInProgram.png)
 🌐 Public
 GET /api/public/client/:id – View public client profile (no auth)
+![Public Profile Preview](Images/getPublicProfile.png)
 
 🧪 Sample Request: Enroll a Client
 
