@@ -96,3 +96,27 @@ GET /api/public/client/:id – View public client profile (no auth)
 {
   "programIds": ["<programId1>", "<programId2>"]
 }
+
+🔮 Future Improvements
+
+These are some extra features and enhancements planned for the next phase:
+
+🧑‍⚕️ Doctor profile management with update/delete
+
+🗓️ Appointment scheduling between clients and doctors
+
+💬 Messaging/chat between doctor and client
+
+📅 Program timelines and progress tracking
+
+📊 Dashboard with analytics for program impact
+
+🗒️ Client visit history and reports
+
+🔒 Role-based access control (admin, doctor, support staff)
+
+🖥️ Fully responsive frontend using React.js
+
+📂 Export data (PDF/CSV) for reporting
+
+📲 Mobile-friendly version or mobile app support
