@@ -55,8 +55,15 @@ POST /api/auth/signup – Register doctor
 
 POST /api/auth/login – Login doctor
 
+Test Register doctor with postman
+![Register doctor]()
+Test Login doctor with postman
+![Login doctor]()
+
 💊 Programs
 POST /api/programs – Create program
+Test Create Program with postman
+![Create Program]()
 
 GET /api/programs – Get all programs
 
@@ -64,18 +71,18 @@ GET /api/programs – Get all programs
 POST /api/clients – Register client
 
 GET /api/clients – Search/list clients
+Test get clients api with postman
+![GetClients]()
 
 GET /api/clients/:id – View client profile
 
 POST /api/clients/:id/enroll – Enroll client in programs
-
+Test enroll client in a program with postman
+![EnrollInProgram]()
 🌐 Public
 GET /api/public/client/:id – View public client profile (no auth)
 
 🧪 Sample Request: Enroll a Client
-http
-Copy
-Edit
 POST /api/clients/:id/enroll
 Authorization: Bearer <token>
 Content-Type: application/json
