@@ -26,26 +26,27 @@ A basic Health Information Management System for doctors to manage clients and e
 ## 📦 Setup Instructions
 
 1. Clone the repo
-bash
-git clone https://github.com/your-username/health-info-system.git
-cd health-info-system
-Install dependencies
+- bash
+- git clone https://github.com/your-username/health-info-system.git
+- cd health-info-system
+- Install dependencies
 
-npm install
-Create a .env file:
+- npm install
+- Create a .env file:
 
-env
-Copy
-Edit
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-Run the server
+- env
+- Copy
+- Edit
+- PORT=5000
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret
+- Run the server
 
-bash
-Copy
-Edit
-npm run dev
+- bash
+- Copy
+- Edit
+- npm run dev
+  
 🔑 API Routes
 🧑‍⚕️ Auth
 POST /api/auth/signup – Register doctor
@@ -80,9 +81,10 @@ Test enroll client in a program with postman
 GET /api/public/client/:id – View public client profile (no auth)
 
 🧪 Sample Request: Enroll a Client
-POST /api/clients/:id/enroll
-Authorization: Bearer <token>
-Content-Type: application/json
+
+- POST /api/clients/:id/enroll
+- Authorization: Bearer <token>
+- Content-Type: application/json
 
 {
   "programIds": ["<programId1>", "<programId2>"]
