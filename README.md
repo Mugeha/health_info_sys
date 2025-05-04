@@ -127,7 +127,7 @@ Context API or Zustand for auth state
 /clients/:id/enroll → POST enroll
 
 
-🔮 Future Improvements
+## 🔮 Future Improvements
 
 These are some extra features and enhancements planned for the next phase:
 
