@@ -13,6 +13,7 @@ function App() {
         <Route path="/clients" element={<Clients />} />
         <Route path="/add-client" element={<AddClient />} />
         <Route path="/clients/:id" element={<ClientProfile />} />
+        <Route path="/programs" element={<Programs />} />
 
         {/* Add other routes here */}
       </Routes>
