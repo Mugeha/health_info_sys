@@ -110,6 +110,21 @@ Tailwind CSS (optional, but 🔥 for styling)
 
 Context API or Zustand for auth state
 
+## 🔧 Frontend Pages To Be Built
+Login Page — Authenticates doctor, saves token
+
+Client List Page — Shows all clients (auth-only)
+
+Add Client Page — Form to register a new client
+
+Client Profile Page — Shows detailed info + enrolled programs
+
+Enroll to Program Page — Enroll client to programs
+
+Public Profile Page — Accessible without login
+
+Program List Page — Lists all health programs
+
 ## Sample Page Flow (After Login)
 
 /login → POST login → store token → redirect to /dashboard
