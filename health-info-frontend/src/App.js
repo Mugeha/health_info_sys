@@ -11,6 +11,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/clients" element={<Clients />} />
+        <Route path="/add-client" element={<AddClient />} />
+
         {/* Add other routes here */}
       </Routes>
     </Router>
