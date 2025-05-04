@@ -97,6 +97,20 @@ GET /api/public/client/:id – View public client profile (no auth)
   "programIds": ["<programId1>", "<programId2>"]
 }
 
+
+## Frontend dev with React
+
+React (Vite or Create React App)
+
+Axios for API calls
+
+React Router for routing
+
+Tailwind CSS (optional, but 🔥 for styling)
+
+Context API or Zustand for auth state
+
+
 🔮 Future Improvements
 
 These are some extra features and enhancements planned for the next phase:
