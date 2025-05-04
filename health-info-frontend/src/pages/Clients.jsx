@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 
 const Clients = () => {
@@ -27,12 +29,15 @@ const Clients = () => {
     <div style={{ padding: '2rem' }}>
       <h2>All Registered Clients</h2>
       <ul>
-        {clients.map((client) => (
-          <li key={client._id}>
-            <strong>{client.name}</strong> - {client.nationalId} - {client.gender}
-          </li>
-        ))}
-      </ul>
+  {clients.map((client) => (
+    <li key={client._id}>
+      <Link to={`/clients/${client._id}`}>
+        <strong>{client.name}</strong> - {client.nationalId} - {client.gender}
+      </Link>
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 };
