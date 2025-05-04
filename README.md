@@ -110,6 +110,22 @@ Tailwind CSS (optional, but 🔥 for styling)
 
 Context API or Zustand for auth state
 
+## Sample Page Flow (After Login)
+
+/login → POST login → store token → redirect to /dashboard
+
+/dashboard → shows links to clients, programs, etc
+
+/clients → GET all clients using token
+
+/clients/:id → GET private client profile
+
+/clients/public/:id → GET public profile (no token)
+
+/programs → GET all programs
+
+/clients/:id/enroll → POST enroll
+
 
 🔮 Future Improvements
 
