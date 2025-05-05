@@ -1,25 +1,59 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Clients from './pages/Clients';
 import AddClient from './pages/AddClient';
 import ClientProfile from './pages/ClientProfile';
 import Programs from './pages/Programs';
-
-// ... other imports
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/clients" element={<Clients />} />
-        <Route path="/add-client" element={<AddClient />} />
-        <Route path="/clients/:id" element={<ClientProfile />} />
-        <Route path="/programs" element={<Programs />} />
-
-        {/* Add other routes here */}
+        
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/clients"
+          element={
+            <PrivateRoute>
+              <Clients />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/add-client"
+          element={
+            <PrivateRoute>
+              <AddClient />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/clients/:id"
+          element={
+            <PrivateRoute>
+              <ClientProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/programs"
+          element={
+            <PrivateRoute>
+              <Programs />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
