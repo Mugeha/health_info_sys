@@ -2,6 +2,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Clients from './pages/Clients';
+import AddClient from './pages/AddClient';
+import ClientProfile from './pages/ClientProfile';
+import Programs from './pages/Programs';
+
 // ... other imports
 
 function App() {
