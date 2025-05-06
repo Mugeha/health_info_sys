@@ -5,7 +5,7 @@ import Clients from './pages/Clients';
 import AddClient from './pages/AddClient';
 import ClientProfile from './pages/ClientProfile';
 import Programs from './pages/Programs';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './pages/PrivateRoute';
 
 function App() {
   return (
