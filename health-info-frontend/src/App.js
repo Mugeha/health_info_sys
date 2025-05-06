@@ -6,6 +6,7 @@ import AddClient from './pages/AddClient';
 import ClientProfile from './pages/ClientProfile';
 import Programs from './pages/Programs';
 import PrivateRoute from './pages/PrivateRoute';
+import ClientSearch from './pages/ClientSearch'; // 🔥 Added this
 
 function App() {
   return (
@@ -51,6 +52,14 @@ function App() {
           element={
             <PrivateRoute>
               <Programs />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/client-search"
+          element={
+            <PrivateRoute>
+              <ClientSearch />
             </PrivateRoute>
           }
         />

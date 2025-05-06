@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ClientSearch.css'; // You can make this file
 
 const ClientSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,27 +16,30 @@ const ClientSearch = () => {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Search Clients</h2>
-      <input
-        type="text"
-        placeholder="Enter client name or ID"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-
-      <ul>
+    <div className="client-search-container">
+      <h2>🔍 Search Clients</h2>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Enter client name or ID"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+      <div className="results">
         {results.length === 0 ? (
-          <li>No results</li>
+          <p>No results found.</p>
         ) : (
-          results.map((client) => (
-            <li key={client._id}>
-              {client.name} – {client.contact}
-            </li>
-          ))
+          <ul>
+            {results.map((client) => (
+              <li key={client._id}>
+                <strong>{client.name}</strong> – {client.contact}
+              </li>
+            ))}
+          </ul>
         )}
-      </ul>
+      </div>
     </div>
   );
 };
