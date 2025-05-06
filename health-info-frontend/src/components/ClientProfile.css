@@ -1,0 +1,43 @@
+.profile-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .profile-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .program-title {
+    margin-top: 20px;
+  }
+  
+  .back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .loading-message {
+    text-align: center;
+    padding: 10px;
+  }
+  

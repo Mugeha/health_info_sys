@@ -1,16 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Dashboard.css'; // Link to the CSS file
 
 const Dashboard = () => {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Welcome, Doctor 👨‍⚕️</h1>
-      <ul>
-        <li><Link to="/clients">View Clients</Link></li>
-        <li><Link to="/programs">View Programs</Link></li>
-        <li><Link to="/client-search">Search Client (Public)</Link></li>
-        {/* Add more links as needed */}
-      </ul>
+    <div className="dashboard-container">
+      <h1 className="dashboard-title">Welcome, Doctor 👨‍⚕️</h1>
+      <div className="dashboard-links">
+        <Link to="/clients" className="dashboard-card">
+          🧑‍🤝‍🧑 View Clients
+        </Link>
+        <Link to="/programs" className="dashboard-card">
+          📋 View Programs
+        </Link>
+        <Link to="/client-search" className="dashboard-card">
+          🔍 Search Client (Public)
+        </Link>
+      </div>
     </div>
   );
 };
