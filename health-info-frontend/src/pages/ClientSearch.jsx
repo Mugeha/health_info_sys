@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import './ClientSearch.css'; // You can make this file
+import './ClientSearch.css';
+import { useNavigate } from 'react-router-dom';
 
 const ClientSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
 
   const handleSearch = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/clients/search?query=${searchTerm}`);
+      const res = await fetch(`http://localhost:5000/api/clients/public-search?name=${searchTerm}`);
       const data = await res.json();
       setResults(data);
     } catch (err) {
       console.error('Error searching clients:', err);
     }
+  };
+
+  const viewProfile = (id) => {
+    navigate(`/clients/${id}`);
   };
 
   return (
@@ -21,7 +27,7 @@ const ClientSearch = () => {
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Enter client name or ID"
+          placeholder="Enter client name"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -34,7 +40,10 @@ const ClientSearch = () => {
           <ul>
             {results.map((client) => (
               <li key={client._id}>
-                <strong>{client.name}</strong> – {client.contact}
+                <div>
+                  <strong>{client.name}</strong> — {client.age} yrs, {client.gender}
+                </div>
+                <button onClick={() => viewProfile(client._id)}>View Full Profile</button>
               </li>
             ))}
           </ul>
