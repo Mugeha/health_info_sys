@@ -6,6 +6,7 @@ const {
   enrollClientToPrograms,
   getPublicClientProfile
 } = require('../controllers/clientController');
+const { searchClientsPublic } = require('../controllers/clientController');
 
 
 const protect = require('../middleware/authMiddleware');
@@ -17,6 +18,9 @@ router.get('/', protect, getClients);                            // Search/list 
 router.get('/public/:id', getPublicClientProfile); // no auth
 router.get('/:id', protect, getClientById);                      // View profile
 router.post('/:id/enroll', protect, enrollClientToPrograms);     // Enroll in programs
+
+router.get('/public-search', searchClientsPublic); // new public search route
+
 
 module.exports = router;
 

@@ -10,7 +10,7 @@ exports.registerClient = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Error registering client', error: err.message });
   }
-};
+};  
 
 exports.getClients = async (req, res) => {
   const search = req.query.name;
