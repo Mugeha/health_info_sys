@@ -1,42 +1,57 @@
 .client-search-container {
-    padding: 2rem;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
-  .search-bar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 1rem;
-  }
-  
-  .search-bar input {
-    flex: 1;
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-  
-  .search-bar button {
-    padding: 0.5rem 1rem;
-    background-color: #1976d2;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .search-bar button:hover {
-    background-color: #155fa0;
-  }
-  
-  .results ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .results li {
-    background: #f1f1f1;
-    padding: 0.7rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-  }
-  
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.client-search-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.search-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-bar button {
+  padding: 0.6rem 1rem;
+  border: none;
+  background: #4caf50;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.results ul {
+  list-style: none;
+  padding: 0;
+}
+
+.results li {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.results button {
+  background: #2196f3;
+  border: none;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
