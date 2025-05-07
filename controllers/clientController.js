@@ -72,4 +72,18 @@ exports.getPublicClientProfile = async (req, res) => {
     res.status(500).json({ message: 'Error fetching public client profile', error: err.message });
   }
 };
+exports.searchClientsPublic = async (req, res) => {
+  const { name } = req.query;
+
+  try {
+    const clients = name
+      ? await Client.find({ name: { $regex: name, $options: 'i' } }).select('name age gender')
+      : [];
+
+    res.status(200).json(clients);
+  } catch (err) {
+    res.status(500).json({ message: 'Error searching clients', error: err.message });
+  }
+};
+
 
