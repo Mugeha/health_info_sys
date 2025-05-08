@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginDoctor } from '../services/auth';
+import '../components/Login.css'; // If you're using external CSS
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -22,9 +23,9 @@ const Login = () => {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Doctor Login</h2>
-      <form onSubmit={handleLogin}>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2 className="login-title">Doctor Login</h2>
         <input
           type="text"
           name="username"
@@ -32,7 +33,8 @@ const Login = () => {
           value={formData.username}
           onChange={handleChange}
           required
-        /><br /><br />
+          className="login-input"
+        />
         <input
           type="password"
           name="password"
@@ -40,8 +42,9 @@ const Login = () => {
           value={formData.password}
           onChange={handleChange}
           required
-        /><br /><br />
-        <button type="submit">Login</button>
+          className="login-input"
+        />
+        <button type="submit" className="login-button">Login</button>
       </form>
     </div>
   );
