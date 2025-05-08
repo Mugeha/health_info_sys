@@ -18,7 +18,12 @@ const ClientSearch = () => {
   };
 
   const viewProfile = (id) => {
-    navigate(`/clients/${id}`);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    } else {
+      navigate(`/clients/${id}`);
+    }
   };
 
   return (

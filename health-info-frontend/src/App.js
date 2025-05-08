@@ -55,14 +55,8 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/client-search"
-          element={
-            <PrivateRoute>
-              <ClientSearch />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/client-search" element={<ClientSearch />} />
+
       </Routes>
     </Router>
   );
