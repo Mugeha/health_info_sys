@@ -11,19 +11,22 @@ const ClientSearch = () => {
     try {
       const res = await fetch(`http://localhost:5000/api/clients/public-search?name=${searchTerm}`);
       const data = await res.json();
-      setResults(data);
+      console.log('Search response:', data);
+
+      if (Array.isArray(data)) {
+        setResults(data);
+      } else {
+        console.warn('Unexpected data format:', data);
+        setResults([]);
+      }
     } catch (err) {
       console.error('Error searching clients:', err);
+      setResults([]);
     }
   };
 
   const viewProfile = (id) => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-    } else {
-      navigate(`/clients/${id}`);
-    }
+    navigate(`/clients/${id}`);
   };
 
   return (
