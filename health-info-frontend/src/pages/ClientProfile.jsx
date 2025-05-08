@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../components/ClientProfile.css'; // this will hold your styles
+import '../components/ClientProfile.css';
 
 const ClientProfile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [client, setClient] = useState(null);
   const [error, setError] = useState('');
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
     const fetchClient = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/api/clients/${id}`, {
@@ -23,8 +29,9 @@ const ClientProfile = () => {
         setError('Failed to load client profile');
       }
     };
+
     fetchClient();
-  }, [id, token]);
+  }, [id, navigate]);
 
   if (error) return <p className="error-message">{error}</p>;
   if (!client) return <p className="loading-message">Loading...</p>;
