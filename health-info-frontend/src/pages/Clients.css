@@ -1,0 +1,44 @@
+.clients-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .clients-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+  
+  .clients-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .client-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .client-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  }
+  
+  .client-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    display: block;
+  }
+  
+  .client-link:hover {
+    color: #4f46e5;
+    font-weight: 500;
+  }
+  

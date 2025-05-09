@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import axios from 'axios';
+import './Clients.css'; // Make sure this file exists
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
@@ -26,18 +26,17 @@ const Clients = () => {
   }, []);
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>All Registered Clients</h2>
-      <ul>
-  {clients.map((client) => (
-    <li key={client._id}>
-      <Link to={`/clients/${client._id}`}>
-        <strong>{client.name}</strong> - {client.nationalId} - {client.gender}
-      </Link>
-    </li>
-  ))}
-</ul>
-
+    <div className="clients-container">
+      <h2 className="clients-title">All Registered Clients</h2>
+      <ul className="clients-list">
+        {clients.map((client) => (
+          <li key={client._id} className="client-item">
+            <Link to={`/clients/${client._id}`} className="client-link">
+              <strong>{client.name}</strong> — {client.nationalId} — {client.gender}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

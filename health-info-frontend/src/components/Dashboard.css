@@ -3,6 +3,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f7f9fc;
     min-height: 100vh;
+ text-align: center;
   }
   
   .dashboard-title {
@@ -16,6 +17,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
+    justify-content: center;
   }
   
   .dashboard-card {
