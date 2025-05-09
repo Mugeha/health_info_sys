@@ -1,6 +1,6 @@
-// src/pages/Programs.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Programs.css'; // Don't forget to create this file
 
 const Programs = () => {
   const [programs, setPrograms] = useState([]);
@@ -25,15 +25,16 @@ const Programs = () => {
   }, []);
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Health Programs</h2>
+    <div className="programs-container">
+      <h2 className="programs-title">Health Programs</h2>
       {programs.length === 0 ? (
-        <p>No programs found.</p>
+        <p className="no-programs">No programs found.</p>
       ) : (
-        <ul>
+        <ul className="programs-list">
           {programs.map((program) => (
-            <li key={program._id}>
-              <strong>{program.name}</strong> - {program.description}
+            <li key={program._id} className="program-card">
+              <h3 className="program-name">{program.name}</h3>
+              <p className="program-desc">{program.description}</p>
             </li>
           ))}
         </ul>

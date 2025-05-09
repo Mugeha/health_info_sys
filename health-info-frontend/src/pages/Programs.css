@@ -1,0 +1,49 @@
+.programs-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .programs-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 1.5rem;
+  }
+  
+  .no-programs {
+    text-align: center;
+    color: #777;
+  }
+  
+  .programs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .program-card {
+    background: #f0f4f8;
+    border-left: 5px solid #4f46e5;
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    transition: background 0.2s ease;
+  }
+  
+  .program-card:hover {
+    background: #e2e8f0;
+  }
+  
+  .program-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  
+  .program-desc {
+    font-size: 1rem;
+    color: #444;
+    margin: 0;
+  }
+  
