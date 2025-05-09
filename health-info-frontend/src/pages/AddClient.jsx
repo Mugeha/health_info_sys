@@ -1,11 +1,13 @@
 // src/pages/AddClient.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // ✅ for redirect
 
 const AddClient = () => {
   const [form, setForm] = useState({ name: '', age: '', gender: '', contact: '' });
   const [message, setMessage] = useState('');
   const token = localStorage.getItem('token');
+  const navigate = useNavigate(); // ✅ initialize navigation
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,6 +21,11 @@ const AddClient = () => {
       });
       setMessage(`✅ Client ${res.data.name} added!`);
       setForm({ name: '', age: '', gender: '', contact: '' });
+
+      // ✅ redirect after 1s delay
+      setTimeout(() => {
+        navigate('/clients');
+      }, 1000);
     } catch (err) {
       setMessage('❌ Failed to add client');
     }
