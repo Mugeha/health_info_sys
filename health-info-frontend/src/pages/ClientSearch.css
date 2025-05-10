@@ -55,3 +55,17 @@
   border-radius: 6px;
   cursor: pointer;
 }
+.back-button {
+  background-color: #ddd;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.back-button:hover {
+  background-color: #ccc;
+}
+

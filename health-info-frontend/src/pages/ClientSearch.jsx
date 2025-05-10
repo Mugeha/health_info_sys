@@ -31,6 +31,8 @@ const ClientSearch = () => {
 
   return (
     <div className="client-search-container">
+        <button onClick={() => navigate(-1)} className="back-button">← Back</button>
+
       <h2>🔍 Search Clients</h2>
       <div className="search-bar">
         <input
