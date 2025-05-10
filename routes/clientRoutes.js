@@ -15,14 +15,13 @@ const protect = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/', protect, registerClient);                       // Register client
+router.post('/', protect, registerClient);                    // Register client
 router.get('/', protect, getClients);                            // Search/list clients
 router.get('/public/:id', getPublicClientProfile); // no auth
 router.get('/:id', protect, getClientById);                      // View profile
 router.post('/:id/enroll', protect, enrollClientToPrograms);     // Enroll in programs
 
 router.get('/public-search', searchClientsPublic);
-
 
 
 module.exports = router;

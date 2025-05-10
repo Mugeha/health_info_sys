@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Clients.css'; // Make sure this file exists
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
+  const navigate = useNavigate(); // Hook for navigating back
 
   const fetchClients = async () => {
     try {
@@ -27,6 +28,7 @@ const Clients = () => {
 
   return (
     <div className="clients-container">
+      <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
       <h2 className="clients-title">All Registered Clients</h2>
       <ul className="clients-list">
         {clients.map((client) => (
