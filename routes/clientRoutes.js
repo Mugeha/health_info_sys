@@ -15,13 +15,16 @@ const protect = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/', protect, registerClient);                    // Register client
-router.get('/', protect, getClients);                            // Search/list clients
-router.get('/public/:id', getPublicClientProfile); // no auth
-router.get('/:id', protect, getClientById);                      // View profile
-router.post('/:id/enroll', protect, enrollClientToPrograms);     // Enroll in programs
-
+// Place public routes ABOVE any dynamic ones like /:id
 router.get('/public-search', searchClientsPublic);
+router.get('/public/:id', getPublicClientProfile); // Still fine here
+
+// Auth-protected routes below
+router.post('/', protect, registerClient);
+router.get('/', protect, getClients);
+router.get('/:id', protect, getClientById); 
+router.post('/:id/enroll', protect, enrollClientToPrograms);
+
 
 
 module.exports = router;

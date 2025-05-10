@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Programs.css'; // Don't forget to create this file
 
 const Programs = () => {
   const [programs, setPrograms] = useState([]);
+  const navigate = useNavigate();
 
   const fetchPrograms = async () => {
     try {
@@ -26,6 +28,7 @@ const Programs = () => {
 
   return (
     <div className="programs-container">
+      <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
       <h2 className="programs-title">Health Programs</h2>
       {programs.length === 0 ? (
         <p className="no-programs">No programs found.</p>
