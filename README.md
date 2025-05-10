@@ -98,49 +98,36 @@ GET /api/public/client/:id – View public client profile (no auth)
 }
 
 
-## Frontend dev with React
+## 👩‍⚕️ User Flow / Experience:
+Login/Access:
 
-React (Vite or Create React App)
+The doctor logs in securely (JWT-based auth is assumed).
 
-Axios for API calls
+Lands on a personalized dashboard: "Welcome, Doctor 👨‍⚕️"
 
-React Router for routing
+Dashboard Options:
 
-Tailwind CSS (optional, but 🔥 for styling)
+📋 View Clients — Navigate to a list of all registered clients (pulled from backend).
 
-Context API or Zustand for auth state
+➕ Add Client — Opens a form to register a new client.
 
-## 🔧 Frontend Pages To Be Built
-Login Page — Authenticates doctor, saves token
+🔍 Search Client (Public) — Search bar to find a client quickly (ideal for public directory or faster access).
 
-Client List Page — Shows all clients (auth-only)
+Adding a Client:
 
-Add Client Page — Form to register a new client
+Doctor clicks “Add Client”.
 
-Client Profile Page — Shows detailed info + enrolled programs
+Fills out a form with name, age, gender, and contact info.
 
-Enroll to Program Page — Enroll client to programs
+Hits "Submit" — data is sent to a Node.js/Express backend and saved in a MongoDB (or other DB).
 
-Public Profile Page — Accessible without login
+After successful submission, doctor is auto-redirected to the Clients list.
 
-Program List Page — Lists all health programs
+Viewing Clients:
 
-## Sample Page Flow (After Login)
+Clients page shows a table/list of clients fetched from the backend.
 
-/login → POST login → store token → redirect to /dashboard
-
-/dashboard → shows links to clients, programs, etc
-
-/clients → GET all clients using token
-
-/clients/:id → GET private client profile
-
-/clients/public/:id → GET public profile (no token)
-
-/programs → GET all programs
-
-/clients/:id/enroll → POST enroll
-
+Easy to scroll through and see client details.
 
 ## 🔮 Future Improvements
 
