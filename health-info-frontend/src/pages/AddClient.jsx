@@ -19,17 +19,21 @@ const AddClient = () => {
       const res = await axios.post('http://localhost:5000/api/clients', form, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setMessage(`✅ Client ${res.data.name} added!`);
-      setForm({ name: '', age: '', gender: '', contact: '' });
-
-      // ✅ redirect after 1s delay
+  
+      const newClientId = res.data._id;
+      setMessage(`✅ Client ${res.data.name} added! Redirecting to enroll...`);
+  
+      // redirect to enroll page
       setTimeout(() => {
-        navigate('/clients');
+        navigate(`/clients/${newClientId}/enroll`);
       }, 1000);
+  
+      setForm({ name: '', age: '', gender: '', contact: '' });
     } catch (err) {
       setMessage('❌ Failed to add client');
     }
   };
+  
 
   return (
     <div style={styles.container}>
