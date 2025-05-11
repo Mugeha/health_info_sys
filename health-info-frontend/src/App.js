@@ -55,6 +55,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+  path="/clients/:id/enroll"
+  element={
+    <PrivateRoute>
+      <EnrollClient />
+    </PrivateRoute>
+  }
+/>
+
         <Route path="/client-search" element={<ClientSearch />} />
 
       </Routes>
