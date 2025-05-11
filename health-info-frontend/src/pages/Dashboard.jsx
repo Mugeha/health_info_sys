@@ -14,11 +14,12 @@ const Dashboard = () => {
           📋 View Programs
         </Link>
         <Link to="/client-search" className="dashboard-card">
-          🔍 Search Client (Public)
+          🔍 Search Client
         </Link>
-        <Link to="/clients/add" className="dashboard-card">
-          ➕ Add New Client
-        </Link>
+        <Link to="/add-client" className="dashboard-card">
+  ➕ Add New Client
+</Link>
+
       </div>
     </div>
   );
