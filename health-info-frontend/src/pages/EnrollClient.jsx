@@ -12,9 +12,18 @@ const EnrollClient = () => {
       try {
         const res = await fetch('http://localhost:5000/api/programs');
         const data = await res.json();
-        setPrograms(data);
+        console.log('Fetched programs:', data);
+
+        // ✅ Check if data is an array
+        if (Array.isArray(data)) {
+          setPrograms(data);
+        } else {
+          console.error('Unexpected response format:', data);
+          setPrograms([]); // fallback to empty array to avoid .map error
+        }
       } catch (err) {
         console.error('Error fetching programs:', err);
+        setPrograms([]); // fallback on error
       }
     };
 
@@ -38,13 +47,13 @@ const EnrollClient = () => {
       });
 
       if (res.ok) {
-        alert('Client successfully enrolled!');
-        navigate('/clients'); // redirect to clients list or profile
+        alert('✅ Client successfully enrolled!');
+        navigate('/clients'); // ✅ Redirect after enrolling
       } else {
-        console.error('Enroll failed');
+        console.error('❌ Enroll failed');
       }
     } catch (err) {
-      console.error('Error enrolling client:', err);
+      console.error('❌ Error enrolling client:', err);
     }
   };
 
