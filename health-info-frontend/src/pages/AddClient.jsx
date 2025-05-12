@@ -19,24 +19,24 @@ const AddClient = () => {
       const res = await axios.post('http://localhost:5000/api/clients', form, {
         headers: { Authorization: `Bearer ${token}` },
       });
-  
+
       const newClientId = res.data._id;
       setMessage(`✅ Client ${res.data.name} added! Redirecting to enroll...`);
-  
+
       // redirect to enroll page
       setTimeout(() => {
         navigate(`/clients/${newClientId}/enroll`);
       }, 1000);
-  
+
       setForm({ name: '', age: '', gender: '', contact: '' });
     } catch (err) {
       setMessage('❌ Failed to add client');
     }
   };
-  
 
   return (
     <div style={styles.container}>
+      <button style={styles.backButton} onClick={() => navigate(-1)}>← Back</button>
       <h2 style={styles.heading}>Add New Client</h2>
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
@@ -87,6 +87,17 @@ const styles = {
     background: '#f9f9f9',
     borderRadius: '10px',
     boxShadow: '0 0 12px rgba(0,0,0,0.1)',
+    position: 'relative',
+  },
+  backButton: {
+    position: 'absolute',
+    top: '1rem',
+    left: '1rem',
+    background: 'transparent',
+    border: 'none',
+    fontSize: '1.2rem',
+    color: '#333',
+    cursor: 'pointer',
   },
   heading: {
     textAlign: 'center',

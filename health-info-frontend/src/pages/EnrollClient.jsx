@@ -14,14 +14,18 @@ const EnrollClient = () => {
       try {
         const res = await fetch('http://localhost:5000/api/programs');
         const data = await res.json();
-        setPrograms(data);
+  
+        // 💡 Check what your backend actually returns
+        setPrograms(Array.isArray(data) ? data : data.programs || []);
       } catch (err) {
         console.error('Error fetching programs:', err);
+        setPrograms([]);
       }
     };
-
+  
     fetchPrograms();
   }, []);
+  
 
   const handleCheckboxChange = (programId) => {
     setSelectedPrograms((prev) =>
@@ -32,23 +36,30 @@ const EnrollClient = () => {
   };
 
   const handleEnroll = async () => {
+    const token = localStorage.getItem('token'); // ✅ Get the token
+  
     try {
       const res = await fetch(`http://localhost:5000/api/clients/${id}/enroll`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // ✅ Include token here
+        },
         body: JSON.stringify({ programIds: selectedPrograms }),
       });
-
+  
       if (res.ok) {
         alert('Client successfully enrolled!');
         navigate('/clients');
       } else {
-        console.error('Enroll failed');
+        const error = await res.json();
+        console.error('Enroll failed:', error);
       }
     } catch (err) {
       console.error('Error enrolling client:', err);
     }
   };
+  
 
   return (
     <div className="enroll-client-container">
