@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginDoctor } from '../services/auth';
-import '../components/Login.css'; // If you're using external CSS
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import '../components/Login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const togglePassword = () => {
+    setShowPassword(prev => !prev);
   };
 
   const handleLogin = async (e) => {
@@ -17,7 +25,10 @@ const Login = () => {
       await loginDoctor(formData);
       navigate('/dashboard');
     } catch (error) {
-      alert('Login failed. Check credentials.');
+      toast.error('Login failed. Check your credentials.', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
       console.error(error);
     }
   };
@@ -26,6 +37,7 @@ const Login = () => {
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
         <h2 className="login-title">Doctor Login</h2>
+
         <input
           type="text"
           name="username"
@@ -35,17 +47,26 @@ const Login = () => {
           required
           className="login-input"
         />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          className="login-input"
-        />
+
+        <div className="password-wrapper">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="login-input"
+          />
+          <span className="toggle-password" onClick={togglePassword}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+
         <button type="submit" className="login-button">Login</button>
       </form>
+
+      <ToastContainer />
     </div>
   );
 };

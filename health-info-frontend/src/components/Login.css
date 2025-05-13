@@ -1,56 +1,81 @@
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  }
-  
-  .login-form {
-    background-color: white;
-    padding: 2rem 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .login-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .login-input {
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.75rem;
-    font-size: 1rem;
-    transition: border-color 0.2s;
-  }
-  
-  .login-input:focus {
-    outline: none;
-    border-color: #4f46e5;
-  }
-  
-  .login-button {
-    padding: 0.75rem 1rem;
-    background-color: #4f46e5;
-    color: white;
-    border: none;
-    border-radius: 0.75rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .login-button:hover {
-    background-color: #3730a3;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.login-form {
+  background-color: white;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-input {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.login-button {
+  padding: 0.75rem 1rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #3730a3;
+}
+
+.password-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.password-wrapper .login-input {
+  padding-right: 2.75rem; /* extra space for the eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+  font-size: 1.1rem;
+  z-index: 2;
+}
