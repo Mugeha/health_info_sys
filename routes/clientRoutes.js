@@ -5,7 +5,8 @@ const {
   getClientById,
   enrollClientToPrograms,
   getPublicClientProfile,
-  searchClientsPublic // ⬅️ this one
+  searchClientsPublic,
+  deleteClient 
 
 } = require('../controllers/clientController');
 
@@ -24,6 +25,7 @@ router.post('/', protect, registerClient);
 router.get('/', protect, getClients);
 router.get('/:id', protect, getClientById); 
 router.post('/:id/enroll', protect, enrollClientToPrograms);
+router.delete('/:id', protect, deleteClient);
 
 
 
