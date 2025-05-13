@@ -10,21 +10,30 @@ const EnrollClient = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchPrograms = async () => {
-      try {
-        const res = await fetch('http://localhost:5000/api/programs');
-        const data = await res.json();
-  
-        // 💡 Check what your backend actually returns
-        setPrograms(Array.isArray(data) ? data : data.programs || []);
-      } catch (err) {
-        console.error('Error fetching programs:', err);
-        setPrograms([]);
-      }
-    };
-  
-    fetchPrograms();
-  }, []);
+  const fetchPrograms = async () => {
+    try {
+      const token = localStorage.getItem('token'); // ✅ Pull token
+
+      const res = await fetch('http://localhost:5000/api/programs', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // ✅ Auth header
+        },
+      });
+
+      const data = await res.json();
+
+      // ✅ Protect against weird response formats
+      setPrograms(Array.isArray(data) ? data : data.programs || []);
+    } catch (err) {
+      console.error('Error fetching programs:', err);
+      setPrograms([]);
+    }
+  };
+
+  fetchPrograms();
+}, []);
+
   
 
   const handleCheckboxChange = (programId) => {
@@ -39,6 +48,8 @@ const EnrollClient = () => {
     const token = localStorage.getItem('token'); // ✅ Get the token
   
     try {
+      console.log("Token being sent:", token);
+
       const res = await fetch(`http://localhost:5000/api/clients/${id}/enroll`, {
         method: 'POST',
         headers: {
