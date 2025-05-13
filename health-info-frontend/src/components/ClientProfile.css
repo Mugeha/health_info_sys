@@ -40,4 +40,18 @@
     text-align: center;
     padding: 10px;
   }
+  .delete-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
   
