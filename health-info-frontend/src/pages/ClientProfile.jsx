@@ -8,6 +8,7 @@ const ClientProfile = () => {
   const navigate = useNavigate();
   const [client, setClient] = useState(null);
   const [error, setError] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // 🔥 state for modal
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -35,7 +36,6 @@ const ClientProfile = () => {
 
   const handleDelete = async () => {
     const token = localStorage.getItem('token');
-    if (!window.confirm('Are you sure you want to delete this client?')) return;
 
     try {
       await axios.delete(`http://localhost:5000/api/clients/${id}`, {
@@ -43,11 +43,10 @@ const ClientProfile = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
       alert('Client deleted successfully.');
-      navigate('/clients'); // 👈 Redirect after deletion
+      navigate('/clients');
     } catch (err) {
-      console.error('Delete failed:', err);
+      console.error('Delete error:', err);
       alert('Failed to delete client.');
     }
   };
@@ -63,6 +62,7 @@ const ClientProfile = () => {
       <p><strong>Age:</strong> {client.age}</p>
       <p><strong>Gender:</strong> {client.gender}</p>
       <p><strong>Contact:</strong> {client.contact}</p>
+
       <h3 className="program-title">Enrolled Programs:</h3>
       <ul>
         {client.enrolledPrograms.length === 0 ? (
@@ -74,10 +74,19 @@ const ClientProfile = () => {
         )}
       </ul>
 
-      {/* 🚨 Delete Button */}
-      <button className="delete-button" onClick={handleDelete}>
-        🗑️ Delete Client
-      </button>
+      <button className="delete-button" onClick={() => setShowDeleteModal(true)}>🗑️ Delete Client</button>
+
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>Are you sure you want to delete this client?</p>
+            <div className="modal-actions">
+              <button onClick={handleDelete} className="confirm-delete">Yes, Delete</button>
+              <button onClick={() => setShowDeleteModal(false)} className="cancel-delete">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
