@@ -33,6 +33,25 @@ const ClientProfile = () => {
     fetchClient();
   }, [id, navigate]);
 
+  const handleDelete = async () => {
+    const token = localStorage.getItem('token');
+    if (!window.confirm('Are you sure you want to delete this client?')) return;
+
+    try {
+      await axios.delete(`http://localhost:5000/api/clients/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      alert('Client deleted successfully.');
+      navigate('/clients'); // 👈 Redirect after deletion
+    } catch (err) {
+      console.error('Delete failed:', err);
+      alert('Failed to delete client.');
+    }
+  };
+
   if (error) return <p className="error-message">{error}</p>;
   if (!client) return <p className="loading-message">Loading...</p>;
 
@@ -54,6 +73,11 @@ const ClientProfile = () => {
           ))
         )}
       </ul>
+
+      {/* 🚨 Delete Button */}
+      <button className="delete-button" onClick={handleDelete}>
+        🗑️ Delete Client
+      </button>
     </div>
   );
 };
