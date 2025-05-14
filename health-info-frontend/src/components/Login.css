@@ -79,3 +79,19 @@
   font-size: 1.1rem;
   z-index: 2;
 }
+.forgot-password-text {
+  text-align: right;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.forgot-password-text a {
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.forgot-password-text a:hover {
+  text-decoration: underline;
+}
+
