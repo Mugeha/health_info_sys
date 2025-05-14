@@ -63,6 +63,10 @@ const Login = () => {
           </span>
         </div>
 
+        <p className="forgot-password-text">
+  <a href="/forgot-password">Forgot Password?</a>
+</p>
+
         <button type="submit" className="login-button">Login</button>
       </form>
 
