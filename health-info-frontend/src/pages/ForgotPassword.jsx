@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './ForgotPassword.css'; // You can create a simple style file
+import '../components/ForgotPassword.css'; // You can create a simple style file
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState('');
