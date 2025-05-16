@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../models/User');
-const sendEmail = require('../utils/sendEmail'); // new import
+const sendEmail = require('../utils/sendMail'); // new import
 
 const generateToken = (user) => {
   return jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, {
@@ -51,7 +51,8 @@ exports.forgotPassword = async (req, res) => {
     user.resetPasswordExpires = expiry;
     await user.save();
 
-    const resetURL = `http://localhost:5173/reset-password/${token}`;
+    const resetURL = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+
     const html = `
       <p>You requested a password reset</p>
       <p>Click <a href="${resetURL}">here</a> to reset your password.</p>
