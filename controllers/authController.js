@@ -40,14 +40,14 @@ exports.loginDoctor = async (req, res) => {
 };
 
 exports.forgotPassword = async (req, res) => {
-  const { username } = req.body;
+  const { email } = req.body;
 
   try {
-    const user = await User.findOne({ username });
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: 'No user found with that email' });
 
     const token = crypto.randomBytes(32).toString('hex');
-    const expiry = Date.now() + 3600000; // 1 hour
+    const expiry = Date.now() + 3600000;
 
     user.resetPasswordToken = token;
     user.resetPasswordExpires = expiry;
@@ -61,15 +61,15 @@ exports.forgotPassword = async (req, res) => {
       <p>This link will expire in 1 hour.</p>
     `;
 
-    await sendEmail(user.username, 'Password Reset Request', html);
+    await sendEmail(user.email, 'Password Reset Request', html);
 
     res.status(200).json({ message: 'Password reset link sent to email' });
   } catch (err) {
-  console.error('EMAIL ERROR:', err); // 👀 log full error
-  res.status(500).json({ message: 'Error sending reset email', error: err.message });
-}
-
+    console.error('EMAIL ERROR:', err);
+    res.status(500).json({ message: 'Error sending reset email', error: err.message });
+  }
 };
+
 
 exports.resetPassword = async (req, res) => {
   const { token } = req.params;
