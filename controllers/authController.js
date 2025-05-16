@@ -10,18 +10,20 @@ const generateToken = (user) => {
 };
 
 exports.registerDoctor = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
   try {
-    const existing = await User.findOne({ username });
-    if (existing) return res.status(400).json({ message: 'Username already exists' });
+    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+    if (existingUser)
+      return res.status(400).json({ message: 'Username or email already exists' });
 
-    const newUser = await User.create({ username, password });
+    const newUser = await User.create({ username, email, password });
     const token = generateToken(newUser);
     res.status(201).json({ user: newUser.username, token });
   } catch (err) {
     res.status(500).json({ message: 'Error registering doctor', error: err.message });
   }
 };
+
 
 exports.loginDoctor = async (req, res) => {
   const { username, password } = req.body;
