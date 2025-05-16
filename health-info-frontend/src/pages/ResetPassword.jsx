@@ -11,8 +11,18 @@ const ResetPassword = () => {
 
   const handleReset = async (e) => {
     e.preventDefault();
+
+    // Basic password validation (optional but helpful)
+    if (newPassword.length < 6) {
+      setMessage('Password must be at least 6 characters.');
+      return;
+    }
+
     try {
-      const res = await axios.post(`/api/auth/reset-password/${token}`, { newPassword });
+      const res = await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, {
+        newPassword,
+      });
+
       setMessage('Password reset successful!');
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
