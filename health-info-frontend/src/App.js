@@ -7,6 +7,8 @@ import ClientProfile from './pages/ClientProfile';
 import Programs from './pages/Programs';
 import PrivateRoute from './pages/PrivateRoute';
 import EnrollClient from './pages/EnrollClient';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 import ClientSearch from './pages/ClientSearch'; // 🔥 Added this
 
@@ -67,6 +69,8 @@ function App() {
 />
 
         <Route path="/client-search" element={<ClientSearch />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-password/:token" element={<ResetPassword />} />
 
       </Routes>
     </Router>
