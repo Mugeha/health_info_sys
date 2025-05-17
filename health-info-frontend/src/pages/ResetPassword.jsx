@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../components/ResetPassword.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
   const { token } = useParams();
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const res = await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, {
+      await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, {
         newPassword,
       });
 
@@ -42,13 +44,23 @@ const ResetPassword = () => {
     <div className="reset-container">
       <form className="reset-form" onSubmit={handleReset}>
         <h2>Reset Password</h2>
-        <input
-          type="password"
-          placeholder="Enter new password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          required
-        />
+        <div className="password-input-container">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Enter new password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            required
+          />
+          <span
+            className="toggle-visibility"
+            onClick={() => setShowPassword(!showPassword)}
+            style={{ cursor: 'pointer', marginLeft: '8px' }}
+            title={showPassword ? 'Hide Password' : 'Show Password'}
+          >
+            {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+          </span>
+        </div>
         <button type="submit">Reset</button>
         {message && <p className="message">{message}</p>}
       </form>
