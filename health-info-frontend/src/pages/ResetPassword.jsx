@@ -9,12 +9,20 @@ const ResetPassword = () => {
   const { token } = useParams();
   const navigate = useNavigate();
 
+  const validatePassword = (password) => {
+    const lengthCheck = password.length >= 8;
+    const upperCheck = /[A-Z]/.test(password);
+    const lowerCheck = /[a-z]/.test(password);
+    const numberCheck = /[0-9]/.test(password);
+    const specialCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    return lengthCheck && upperCheck && lowerCheck && numberCheck && specialCheck;
+  };
+
   const handleReset = async (e) => {
     e.preventDefault();
 
-    // Basic password validation (optional but helpful)
-    if (newPassword.length < 6) {
-      setMessage('Password must be at least 6 characters.');
+    if (!validatePassword(newPassword)) {
+      setMessage('Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.');
       return;
     }
 
@@ -23,7 +31,7 @@ const ResetPassword = () => {
         newPassword,
       });
 
-      setMessage('Password reset successful!');
+      setMessage('✅ Password reset successful! Redirecting...');
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
       setMessage(err.response?.data?.message || 'Reset failed.');
