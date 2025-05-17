@@ -24,7 +24,9 @@ const ResetPassword = () => {
     e.preventDefault();
 
     if (!validatePassword(newPassword)) {
-      setMessage('Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.');
+      setMessage(
+        'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.'
+      );
       return;
     }
 
@@ -54,11 +56,18 @@ const ResetPassword = () => {
           />
           <span
             className="toggle-visibility"
-            onClick={() => setShowPassword(!showPassword)}
-            style={{ cursor: 'pointer', marginLeft: '8px' }}
+            onClick={() => setShowPassword((prev) => !prev)}
             title={showPassword ? 'Hide Password' : 'Show Password'}
+            style={{
+              position: 'absolute',
+              right: '12px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              cursor: 'pointer',
+              color: '#555',
+            }}
           >
-            {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+            {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
           </span>
         </div>
         <button type="submit">Reset</button>
