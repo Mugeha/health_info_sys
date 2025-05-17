@@ -70,7 +70,12 @@ exports.forgotPassword = async (req, res) => {
       <p>This link will expire in 1 hour.</p>
     `;
 
-    await sendEmail(user.email, 'Password Reset Request', html);
+    await sendEmail({
+  to: user.email,
+  subject: 'Password Reset Request',
+  html
+});
+
 
     res.status(200).json({ message: 'Password reset link sent to email' });
   } catch (err) {
