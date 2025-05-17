@@ -46,6 +46,15 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'No user found with that email' });
 
+    // Debug: Log the user email found
+    console.log("User found for password reset:", user.email);
+
+    // Sanity check before sending email
+    if (!user.email) {
+      console.error("User found but email is undefined.");
+      return res.status(500).json({ message: "User email not defined." });
+    }
+
     const token = crypto.randomBytes(32).toString('hex');
     const expiry = Date.now() + 3600000;
 
@@ -69,6 +78,7 @@ exports.forgotPassword = async (req, res) => {
     res.status(500).json({ message: 'Error sending reset email', error: err.message });
   }
 };
+
 
 
 exports.resetPassword = async (req, res) => {
