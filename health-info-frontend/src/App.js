@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { Toaster } from 'react-hot-toast'; // ✅ import toaster
+
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Clients from './pages/Clients';
@@ -9,16 +11,18 @@ import PrivateRoute from './pages/PrivateRoute';
 import EnrollClient from './pages/EnrollClient';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-
-import ClientSearch from './pages/ClientSearch'; // 🔥 Added this
+import ClientSearch from './pages/ClientSearch';
 
 function App() {
   return (
     <Router>
+      {/* ✅ Toaster needs to be inside Router but outside Routes */}
+      <Toaster position="top-center" reverseOrder={false} />
+
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        
+
         <Route
           path="/dashboard"
           element={
@@ -60,18 +64,16 @@ function App() {
           }
         />
         <Route
-  path="/clients/:id/enroll"
-  element={
-    <PrivateRoute>
-      <EnrollClient />
-    </PrivateRoute>
-  }
-/>
-
+          path="/clients/:id/enroll"
+          element={
+            <PrivateRoute>
+              <EnrollClient />
+            </PrivateRoute>
+          }
+        />
         <Route path="/client-search" element={<ClientSearch />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-<Route path="/reset-password/:token" element={<ResetPassword />} />
-
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

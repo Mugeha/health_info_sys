@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+
 import axios from 'axios';
 import '../components/ClientProfile.css';
 
@@ -35,21 +37,23 @@ const ClientProfile = () => {
   }, [id, navigate]);
 
   const handleDelete = async () => {
-    const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
-    try {
-      await axios.delete(`http://localhost:5000/api/clients/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      alert('Client deleted successfully.');
-      navigate('/clients');
-    } catch (err) {
-      console.error('Delete error:', err);
-      alert('Failed to delete client.');
-    }
-  };
+  try {
+    await axios.delete(`http://localhost:5000/api/clients/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    setShowDeleteModal(false);
+    toast.success('Client deleted successfully'); // 🍞 toast instead of alert
+    navigate('/clients');
+  } catch (err) {
+    console.error('Delete error:', err);
+    toast.error('Failed to delete client.');
+  }
+};
 
   if (error) return <p className="error-message">{error}</p>;
   if (!client) return <p className="loading-message">Loading...</p>;
