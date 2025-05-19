@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './EnrollClient.css';
+import toast from 'react-hot-toast';
 
 
 const EnrollClient = () => {
@@ -60,7 +61,7 @@ const EnrollClient = () => {
       });
   
       if (res.ok) {
-        alert('Client successfully enrolled!');
+        toast.success('Client successfully enrolled!');
         navigate('/clients');
       } else {
         const error = await res.json();
