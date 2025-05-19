@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'; // ✅ import toaster
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Analytics from './pages/Analytics'; // 🔥 Add this import
 import Clients from './pages/Clients';
 import AddClient from './pages/AddClient';
 import ClientProfile from './pages/ClientProfile';
@@ -39,6 +40,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        
+<Route
+  path="/analytics"
+  element={
+    <PrivateRoute>
+      <Analytics />
+    </PrivateRoute>
+  }
+/>
         <Route
           path="/add-client"
           element={
