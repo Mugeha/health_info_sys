@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+
 import './Programs.css'; // Don't forget to create this file
 
 const Programs = () => {
@@ -18,7 +20,7 @@ const Programs = () => {
       setPrograms(res.data);
     } catch (err) {
       console.error('Error fetching programs:', err);
-      alert('Failed to load programs');
+      toast.error('Failed to load programs');
     }
   };
 

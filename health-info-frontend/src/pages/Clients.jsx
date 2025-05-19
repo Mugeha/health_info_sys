@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Clients.css'; // Make sure this file exists
+import toast from 'react-hot-toast';
+
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
@@ -18,7 +20,7 @@ const Clients = () => {
       setClients(res.data);
     } catch (err) {
       console.error('Error fetching clients:', err);
-      alert('Failed to fetch clients.');
+      toast.error('Failed to fetch clients.');
     }
   };
 

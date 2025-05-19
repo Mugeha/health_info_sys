@@ -21,7 +21,7 @@ const AddClient = () => {
       });
 
       const newClientId = res.data._id;
-      setMessage(`✅ Client ${res.data.name} added! Redirecting to enroll...`);
+      setMessage(`✅ Client ${res.data.name} added!`);
 
       // redirect to enroll page
       setTimeout(() => {
