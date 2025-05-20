@@ -1,39 +1,64 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../models/User');
-const sendEmail = require('../utils/sendEmail'); // new import
+const sendEmail = require('../utils/sendEmail');
 
+// Include role in JWT payload
 const generateToken = (user) => {
-  return jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, {
-    expiresIn: '1h'
-  });
+  return jwt.sign(
+    {
+      id: user._id,
+      username: user.username,
+      role: user.role, // Include role in token
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
 };
 
+// Doctor registration (you can adapt this if you allow registering other roles)
 exports.registerDoctor = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, role = 'admin' } = req.body; // Default to 'admin' or 'doctor'
+
   try {
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-    if (existingUser)
+    if (existingUser) {
       return res.status(400).json({ message: 'Username or email already exists' });
+    }
 
-    const newUser = await User.create({ username, email, password });
+    const newUser = await User.create({ username, email, password, role });
     const token = generateToken(newUser);
-    res.status(201).json({ user: newUser.username, token });
+
+    res.status(201).json({
+      user: {
+        username: newUser.username,
+        role: newUser.role,
+      },
+      token,
+    });
   } catch (err) {
     res.status(500).json({ message: 'Error registering doctor', error: err.message });
   }
 };
 
-
+// Doctor login with role returned
 exports.loginDoctor = async (req, res) => {
   const { username, password } = req.body;
+
   try {
     const user = await User.findOne({ username });
-    if (!user || !(await user.comparePassword(password)))
+    if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ message: 'Invalid credentials' });
+    }
 
     const token = generateToken(user);
-    res.status(200).json({ user: user.username, token });
+    res.status(200).json({
+      user: {
+        username: user.username,
+        role: user.role,
+      },
+      token,
+    });
   } catch (err) {
     res.status(500).json({ message: 'Error logging in', error: err.message });
   }
@@ -45,15 +70,6 @@ exports.forgotPassword = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'No user found with that email' });
-
-    // Debug: Log the user email found
-    console.log("User found for password reset:", user.email);
-
-    // Sanity check before sending email
-    if (!user.email) {
-      console.error("User found but email is undefined.");
-      return res.status(500).json({ message: "User email not defined." });
-    }
 
     const token = crypto.randomBytes(32).toString('hex');
     const expiry = Date.now() + 3600000;
@@ -71,15 +87,13 @@ exports.forgotPassword = async (req, res) => {
     `;
 
     await sendEmail({
-  to: user.email,
-  subject: 'Password Reset Request',
-  html
-});
-
+      to: user.email,
+      subject: 'Password Reset Request',
+      html,
+    });
 
     res.status(200).json({ message: 'Password reset link sent to email' });
   } catch (err) {
-    console.error('EMAIL ERROR:', err);
     res.status(500).json({ message: 'Error sending reset email', error: err.message });
   }
 };
@@ -91,7 +105,7 @@ exports.resetPassword = async (req, res) => {
   try {
     const user = await User.findOne({
       resetPasswordToken: token,
-      resetPasswordExpires: { $gt: Date.now() }
+      resetPasswordExpires: { $gt: Date.now() },
     });
 
     if (!user) return res.status(400).json({ message: 'Invalid or expired token' });
