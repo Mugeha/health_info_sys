@@ -28,6 +28,5 @@ router.post('/:id/enroll', protect, enrollClientToPrograms);
 router.delete('/:id', protect, deleteClient);
 
 
-
 module.exports = router;
 

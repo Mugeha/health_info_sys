@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 import { PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
 import '../components/Analytics.css'; // you can style as needed
 
@@ -7,6 +9,8 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const Analytics = () => {
   const [data, setData] = useState(null);
+    const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -23,6 +27,8 @@ const Analytics = () => {
 
   return (
     <div className="analytics-container">
+              <button onClick={() => navigate(-1)} className="back-button">← Back</button>
+
       <h2>📊 Client Analytics</h2>
 
       <div className="chart-section">

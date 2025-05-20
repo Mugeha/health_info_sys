@@ -16,7 +16,7 @@ const Dashboard = () => {
         <Link to="/client-search" className="dashboard-card">
           🔍 Search Client
         </Link>
-        <Link to="/analytics">📈 View Analytics</Link>
+        <Link to="/analytics" className="dashboard-card">📈 View Analytics</Link>
 
         <Link to="/add-client" className="dashboard-card">
   ➕ Add New Client
