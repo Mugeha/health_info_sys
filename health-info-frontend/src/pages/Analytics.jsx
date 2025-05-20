@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PieChart, Pie, Cell, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
-import './Analytics.css'; // you can style as needed
+import '../components/Analytics.css'; // you can style as needed
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 

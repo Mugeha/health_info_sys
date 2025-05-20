@@ -7,6 +7,8 @@ const MONGO_URI = process.env.MONGO_URI;
 
 const publicRoutes = require('./routes/publicRoutes');
 app.use('/api/public', publicRoutes);
+const analyticsRoutes = require('./routes/analytics');
+app.use('/api/analytics', analyticsRoutes);
 
 
 mongoose.connect(MONGO_URI)
