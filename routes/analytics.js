@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const protect = require('../middleware/authMiddleware');
+const { verifyToken } = require('../middleware/authMiddleware');
+const { authorizeRoles } = require('../middleware/roleMiddleware');
 const { getClientAnalyticsSummary } = require('../controllers/analyticsController');
-console.log('DEBUG: getClientAnalyticsSummary is:', getClientAnalyticsSummary);
-console.log('DEBUG: protect is:', typeof protect);
-console.log('DEBUG: getClientAnalyticsSummary is:', typeof getClientAnalyticsSummary);
 
-
-
-router.get('/summary', protect, getClientAnalyticsSummary);
+// Only allow users with the "doctor" role (or you can add more roles)
+router.get(
+  '/summary',
+  verifyToken,
+  authorizeRoles('doctor'), // Or 'admin', 'staff', etc. if you want
+  getClientAnalyticsSummary
+);
 
 module.exports = router;
