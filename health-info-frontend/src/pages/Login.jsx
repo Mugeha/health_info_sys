@@ -75,9 +75,9 @@ const Login = () => {
           required
           className="login-input"
         >
-          <option value="doctor">Doctor</option>
+          <option value="guest">Guest</option>
           <option value="staff">Staff</option>
-          <option value="admin">Admin</option>
+          <option value="admin">Doctor</option>
         </select>
 
         <p className="forgot-password-text">
