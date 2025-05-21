@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../services/auth'; // updated import
+import { loginUser } from '../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -9,9 +9,9 @@ import '../components/Login.css';
 const Login = () => {
   const [formData, setFormData] = useState({
     username: '',
-    password: '',
-    role: 'doctor' // default role
+    password: ''
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginUser(formData); // using updated function
+      await loginUser(formData); // backend will determine role
       navigate('/dashboard');
     } catch (error) {
       toast.error('Login failed. Check your credentials.', {
@@ -67,18 +67,7 @@ const Login = () => {
           </span>
         </div>
 
-        {/* Role Selector */}
-        <select
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-          required
-          className="login-input"
-        >
-          <option value="guest">Guest</option>
-          <option value="staff">Staff</option>
-          <option value="admin">Doctor</option>
-        </select>
+        {/* 🔥 Role Dropdown Removed */}
 
         <p className="forgot-password-text">
           <a href="/forgot-password">Forgot Password?</a>
