@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginDoctor } from '../services/auth';
+import { loginUser } from '../services/auth'; // updated import
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import '../components/Login.css';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    role: 'doctor' // default role
+  });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -22,7 +26,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginDoctor(formData);
+      await loginUser(formData); // using updated function
       navigate('/dashboard');
     } catch (error) {
       toast.error('Login failed. Check your credentials.', {
@@ -36,7 +40,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
-        <h2 className="login-title">Doctor Login</h2>
+        <h2 className="login-title">Login</h2>
 
         <input
           type="text"
@@ -63,9 +67,22 @@ const Login = () => {
           </span>
         </div>
 
+        {/* Role Selector */}
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+          required
+          className="login-input"
+        >
+          <option value="doctor">Doctor</option>
+          <option value="staff">Staff</option>
+          <option value="admin">Admin</option>
+        </select>
+
         <p className="forgot-password-text">
-  <a href="/forgot-password">Forgot Password?</a>
-</p>
+          <a href="/forgot-password">Forgot Password?</a>
+        </p>
 
         <button type="submit" className="login-button">Login</button>
       </form>
