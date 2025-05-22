@@ -13,7 +13,7 @@ import EnrollClient from './pages/EnrollClient';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import ClientSearch from './pages/ClientSearch';
-import LoginRedirectGuard from './components/LoginRedirectGuard'; // ✅ new import
+import LoginRedirectGuard from './pages/LoginRedirectGuard'; // ✅ new import
 
 function App() {
   return (
