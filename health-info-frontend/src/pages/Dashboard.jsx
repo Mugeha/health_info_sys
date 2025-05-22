@@ -22,15 +22,15 @@ const Dashboard = () => {
             <Link to="/programs" className="dashboard-card">📋 View Programs</Link>
             <Link to="/analytics" className="dashboard-card">📈 View Analytics</Link>
             <Link to="/add-client" className="dashboard-card">➕ Add New Client</Link>
-            <Link to="/reports" className="dashboard-card">📝 Submit Reports</Link>
+            {/* <Link to="/reports" className="dashboard-card">📝 Submit Reports</Link> */}
           </>
         )}
 
         {/* Admin-only actions */}
         {role === 'admin' && (
           <>
-            <Link to="/users" className="dashboard-card">👥 Manage Users</Link>
-            <Link to="/system-settings" className="dashboard-card">⚙️ System Settings</Link>
+            {/* <Link to="/users" className="dashboard-card">👥 Manage Users</Link> */}
+            {/* <Link to="/system-settings" className="dashboard-card">⚙️ System Settings</Link> */}
           </>
         )}
       </div>
