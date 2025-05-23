@@ -74,4 +74,50 @@
   background-color: #ccc;
   border: none;
 }
+.full-error-page {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: #fff5f5;
+  padding: 2rem;
+}
+
+.error-box {
+  background: #ffe5e5;
+  border: 2px solid #ff4d4f;
+  color: #a80000;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.error-box h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.error-box p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.error-box .back-button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.error-box .back-button:hover {
+  background-color: #d9363e;
+}
+
   
