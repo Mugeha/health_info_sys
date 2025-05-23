@@ -29,8 +29,13 @@ const ClientProfile = () => {
         });
         setClient(res.data);
       } catch (err) {
-        setError('Failed to load client profile');
-      }
+  if (err.response?.status === 403) {
+    setError('⛔ You are not authorized to view this profile.');
+  } else {
+    setError('⚠️ Failed to load client profile.');
+  }
+}
+
     };
 
     fetchClient();

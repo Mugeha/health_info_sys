@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import toast from 'react-hot-toast';
 
 const PrivateRoute = ({ children }) => {
@@ -16,7 +16,7 @@ const PrivateRoute = ({ children }) => {
     }
 
     try {
-      const decoded = jwt_decode(token);
+const decoded = jwtDecode(token);
       const now = Date.now() / 1000; // in seconds
 
       if (decoded.exp < now) {
