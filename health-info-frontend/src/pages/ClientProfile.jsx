@@ -60,7 +60,17 @@ const ClientProfile = () => {
   }
 };
 
-  if (error) return <p className="error-message">{error}</p>;
+if (error) {
+  return (
+    <div className="full-error-page">
+      <div className="error-box">
+        <h2>Access Denied</h2>
+        <p>{error}</p>
+        <button onClick={() => navigate(-1)} className="back-button">← Go Back</button>
+      </div>
+    </div>
+  );
+}
   if (!client) return <p className="loading-message">Loading...</p>;
 
   return (
