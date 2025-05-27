@@ -8,15 +8,17 @@ const generateToken = (user) => {
   return jwt.sign(
     {
       id: user._id,
+      email: user.email, 
       username: user.username,
-      role: user.role, // Include role in token
+      role: user.role,
     },
     process.env.JWT_SECRET,
     { expiresIn: '1h' }
   );
 };
 
-// Doctor registration (you can adapt this if you allow registering other roles)
+
+
 exports.registerDoctor = async (req, res) => {
   const { username, email, password, role = 'admin' } = req.body; // Default to 'admin' or 'doctor'
 
