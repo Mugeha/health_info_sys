@@ -13,7 +13,7 @@ import EnrollClient from './pages/EnrollClient';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import ClientSearch from './pages/ClientSearch';
-import LoginRedirectGuard from './pages/LoginRedirectGuard'; // ✅ new import
+import LoginRedirectGuard from './pages/LoginRedirectGuard';
 
 function App() {
   return (
@@ -23,7 +23,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
 
-        {/* ✅ Redirect logged-in users from login */}
         <Route
           path="/login"
           element={
@@ -33,15 +32,71 @@ function App() {
           }
         />
 
-        {/* Private Routes */}
-        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-        <Route path="/clients" element={<PrivateRoute><Clients /></PrivateRoute>} />
-        <Route path="/analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
-        <Route path="/add-client" element={<PrivateRoute><AddClient /></PrivateRoute>} />
-        <Route path="/clients/:id" element={<PrivateRoute><ClientProfile /></PrivateRoute>} />
-        <Route path="/programs" element={<PrivateRoute><Programs /></PrivateRoute>} />
-        <Route path="/clients/:id/enroll" element={<PrivateRoute><EnrollClient /></PrivateRoute>} />
-        
+        {/* Auth + Role-based Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute allowedRoles={['staff', 'admin']}>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/clients"
+          element={
+            <PrivateRoute allowedRoles={['staff', 'admin']}>
+              <Clients />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/programs"
+          element={
+            <PrivateRoute allowedRoles={['staff', 'admin']}>
+              <Programs />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/add-client"
+          element={
+            <PrivateRoute allowedRoles={['staff', 'admin']}>
+              <AddClient />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/analytics"
+          element={
+            <PrivateRoute allowedRoles={['admin']}>
+              <Analytics />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/clients/:id"
+          element={
+            <PrivateRoute allowedRoles={['staff', 'admin']}>
+              <ClientProfile />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/clients/:id/enroll"
+          element={
+            <PrivateRoute allowedRoles={['staff', 'admin']}>
+              <EnrollClient />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Public Routes */}
         <Route path="/client-search" element={<ClientSearch />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
