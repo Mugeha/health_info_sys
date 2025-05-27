@@ -26,7 +26,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginUser(formData); // backend will determine role
+      const { token, role } = await loginUser(formData); // backend response includes role and token
+
+      // 🔐 Save to localStorage for access control
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
+
+      toast.success('Login successful!', {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+
       navigate('/dashboard');
     } catch (error) {
       toast.error('Login failed. Check your credentials.', {
@@ -66,8 +76,6 @@ const Login = () => {
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
-
-        {/* 🔥 Role Dropdown Removed */}
 
         <p className="forgot-password-text">
           <a href="/forgot-password">Forgot Password?</a>
