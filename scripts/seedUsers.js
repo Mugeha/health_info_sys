@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const User = require('../models/User'); // adjust as needed
-require('dotenv').config(); // Just in case .env isn't auto-loaded
+const dotenv = require('dotenv');
+const User = require('../models/User'); // Adjust path if needed
 
-// Validate required env vars
-['ADMIN_EMAIL', 'ADMIN_PASS', 'STAFF_EMAIL', 'STAFF_PASS', 'GUEST_EMAIL', 'GUEST_PASS'].forEach((key) => {
-  if (!process.env[key]) {
-    throw new Error(`❌ Missing environment variable: ${key}`);
-  }
-});
+dotenv.config(); // Load credentials from .env
+
+// Debug .env variables
+console.log('[DEBUG] ADMIN_EMAIL:', process.env.ADMIN_EMAIL);
+console.log('[DEBUG] STAFF_EMAIL:', process.env.STAFF_EMAIL);
+console.log('[DEBUG] GUEST_EMAIL:', process.env.GUEST_EMAIL);
+console.log('[DEBUG] ADMIN_PASS:', process.env.ADMIN_PASS ? '[HIDDEN]' : 'undefined');
+console.log('[DEBUG] STAFF_PASS:', process.env.STAFF_PASS ? '[HIDDEN]' : 'undefined');
+console.log('[DEBUG] GUEST_PASS:', process.env.GUEST_PASS ? '[HIDDEN]' : 'undefined');
 
 const users = [
   {
@@ -35,27 +38,37 @@ async function seedUsers() {
   await mongoose.connect('mongodb://localhost:27017/ev');
 
   try {
-    await User.deleteMany({});
-    console.log('🧨 Old users wiped.');
+    console.log('🚀 Starting user seeding...');
 
     for (let user of users) {
-      console.log(`🔑 Hashing password for: ${user.username}`);
-      console.log(`📧 Email: ${user.email}`);
-      console.log(`👤 Role: ${user.role}`);
+      console.log(`🔍 Checking user: ${user.email}`);
+
+      if (!user.email || !user.password) {
+        console.error(`❌ Missing credentials for user: ${user.username}`);
+        continue;
+      }
+
+      const exists = await User.findOne({ email: user.email });
+
+      if (exists) {
+        console.log(`⚠️  User already exists: ${user.email} (${exists.role})`);
+        continue;
+      }
 
       const hashedPassword = await bcrypt.hash(user.password, 12);
+
       const newUser = new User({
         ...user,
         password: hashedPassword,
       });
 
       await newUser.save();
-      console.log(`✅ Seeded: ${user.username} (${user.role})`);
+      console.log(`✅ Created: ${newUser.username} (${newUser.role})`);
     }
 
-    console.log('🎉 All users seeded successfully.');
+    console.log('🎉 Seeding complete.');
   } catch (err) {
-    console.error('❌ Error seeding users:', err);
+    console.error('❌ Error during seeding:', err);
   } finally {
     mongoose.disconnect();
   }
