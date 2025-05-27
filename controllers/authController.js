@@ -66,6 +66,7 @@ const user = await User.findOne({ email });
 
     res.status(200).json({
       user: {
+            email: user.email,
         username: user.username,
         role: user.role, // ✅ send real role back to frontend
       },
