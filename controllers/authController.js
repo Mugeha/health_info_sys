@@ -43,7 +43,7 @@ exports.registerDoctor = async (req, res) => {
 
 // Doctor login with role returned
 exports.loginUser = async (req, res) => {
-  const { username, password } = req.body; // ✅ role removed from request
+const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ username });
