@@ -1,16 +1,24 @@
 import axios from 'axios';
 
 export const loginUser = async (credentials) => {
-  const res = await axios.post('http://localhost:5000/api/auth/login', credentials);
+  try {
+    const res = await axios.post('http://localhost:5000/api/auth/login', credentials);
 
-  localStorage.setItem('token', res.data.token);
-  localStorage.setItem('role', res.data.user.role);
+    const { token, user } = res.data;
 
-  // 🔥 Auto logout setup based on token expiry
-  const payload = JSON.parse(atob(res.data.token.split('.')[1]));
-  const expiry = payload.exp * 1000;
-  localStorage.setItem('tokenExpiry', expiry);
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', user.role);
+    localStorage.setItem('username', user.username);
+    localStorage.setItem('email', user.email);
 
-  return res.data;
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expiry = payload.exp * 1000;
+    localStorage.setItem('tokenExpiry', expiry);
+
+    return res.data;
+  } catch (error) {
+    throw error.response?.data || { message: 'Login failed. Try again.' };
+  }
 };
+
 
