@@ -35,7 +35,7 @@ const users = [
 ];
 
 async function seedUsers() {
-  await mongoose.connect('mongodb://localhost:27017/ev');
+await mongoose.connect(process.env.MONGO_URI);
 
   try {
     console.log('🚀 Starting user seeding...');

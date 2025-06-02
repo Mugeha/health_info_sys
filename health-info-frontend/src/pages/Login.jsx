@@ -8,7 +8,7 @@ import '../components/Login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: ''
   });
 
@@ -26,9 +26,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { token, role } = await loginUser(formData); // backend response includes role and token
+      const { token, role } = await loginUser(formData); // must return { token, role }
 
-      // 🔐 Save to localStorage for access control
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
 
@@ -53,10 +52,10 @@ const Login = () => {
         <h2 className="login-title">Login</h2>
 
         <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
           onChange={handleChange}
           required
           className="login-input"
