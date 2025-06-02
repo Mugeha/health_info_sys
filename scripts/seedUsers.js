@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 const User = require('../models/User'); // Adjust path if needed
 
-dotenv.config(); // Load credentials from .env
+dotenv.config(); // Load .env
 
 // Debug .env variables
 console.log('[DEBUG] ADMIN_EMAIL:', process.env.ADMIN_EMAIL);
@@ -12,6 +12,10 @@ console.log('[DEBUG] GUEST_EMAIL:', process.env.GUEST_EMAIL);
 console.log('[DEBUG] ADMIN_PASS:', process.env.ADMIN_PASS ? '[HIDDEN]' : 'undefined');
 console.log('[DEBUG] STAFF_PASS:', process.env.STAFF_PASS ? '[HIDDEN]' : 'undefined');
 console.log('[DEBUG] GUEST_PASS:', process.env.GUEST_PASS ? '[HIDDEN]' : 'undefined');
+
+// Determine connection URI
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/ev';
+console.log('🔗 Connecting to MongoDB at:', MONGO_URI);
 
 const users = [
   {
@@ -35,7 +39,7 @@ const users = [
 ];
 
 async function seedUsers() {
-await mongoose.connect(process.env.MONGO_URI);
+  await mongoose.connect(MONGO_URI);
 
   try {
     console.log('🚀 Starting user seeding...');
@@ -70,7 +74,7 @@ await mongoose.connect(process.env.MONGO_URI);
   } catch (err) {
     console.error('❌ Error during seeding:', err);
   } finally {
-    mongoose.disconnect();
+    await mongoose.disconnect();
   }
 }
 
