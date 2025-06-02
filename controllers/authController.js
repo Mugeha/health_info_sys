@@ -45,12 +45,20 @@ exports.registerDoctor = async (req, res) => {
 
 // Doctor login with role returned
 exports.loginUser = async (req, res) => {
-const { email, password } = req.body;
+  const { email, password } = req.body;
+
+  console.log('🔐 Login attempt:', email); // Log incoming login
 
   try {
-const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
+    if (!user) {
+      console.log('❌ No user found with email:', email);
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
 
-    if (!user || !(await user.comparePassword(password))) {
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      console.log('❌ Password mismatch for:', email);
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
@@ -58,24 +66,28 @@ const user = await User.findOne({ email });
       {
         id: user._id,
         username: user.username,
-        role: user.role, // ✅ only trust DB role
+        role: user.role,
       },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
-    res.status(200).json({
+    console.log('✅ Login success for:', email);
+
+    return res.status(200).json({
       user: {
-            email: user.email,
+        email: user.email,
         username: user.username,
-        role: user.role, // ✅ send real role back to frontend
+        role: user.role,
       },
       token,
     });
   } catch (err) {
-    res.status(500).json({ message: 'Login error', error: err.message });
+    console.error('💥 Login error:', err); // This is the key log
+    return res.status(500).json({ message: 'Login error', error: err.message });
   }
 };
+
 
 
 
