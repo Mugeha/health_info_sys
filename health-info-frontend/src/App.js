@@ -22,7 +22,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-
+{/* 
         <Route
           path="/login"
           element={
@@ -30,7 +30,7 @@ function App() {
               <Login />
             </LoginRedirectGuard>
           }
-        />
+        /> */}
 
         {/* Auth + Role-based Routes */}
         <Route
