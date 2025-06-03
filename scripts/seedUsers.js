@@ -59,11 +59,13 @@ async function seedUsers() {
         continue;
       }
 
-      const hashedPassword = await bcrypt.hash(user.password, 12);
+      // const hashedPassword = await bcrypt.hash(user.password, 12);
 
       const newUser = new User({
         ...user,
-        password: hashedPassword,
+        // password: hashedPassword,
+          password: user.password, 
+
       });
 
       await newUser.save();
