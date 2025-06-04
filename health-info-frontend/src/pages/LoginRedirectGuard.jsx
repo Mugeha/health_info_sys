@@ -1,25 +1,38 @@
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 const LoginRedirectGuard = ({ children }) => {
-  const token = localStorage.getItem('token');
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  if (token) {
-    try {
-      const decoded = jwtDecode(token);
-      const now = Date.now() / 1000;
+  useEffect(() => {
+    const token = localStorage.getItem('token');
 
-      if (decoded.exp > now) {
-        return <Navigate to="/dashboard" />;
-      } else {
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        const now = Date.now() / 1000;
+
+        if (decoded.exp > now) {
+          console.log('🔐 User already logged in. Redirecting to dashboard...');
+          setIsAuthenticated(true);
+        } else {
+          console.log('⏰ Token expired. Clearing localStorage...');
+          localStorage.clear();
+        }
+      } catch (err) {
+        console.error('❌ Token decode failed:', err);
+        localStorage.clear();
       }
-    } catch (err) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
     }
-  }
+
+    setCheckingAuth(false);
+  }, []);
+
+  if (checkingAuth) return null; // Prevent premature render
+
+  if (isAuthenticated) return <Navigate to="/dashboard" />;
 
   return children;
 };
