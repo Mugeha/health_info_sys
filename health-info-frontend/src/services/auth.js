@@ -7,7 +7,7 @@ export const loginUser = async (credentials) => {
     const { token, user } = res.data;
 
     localStorage.setItem('token', token);
-    localStorage.setItem('role', user.role);
+    localStorage.setItem('role', user.role.toLowerCase()); // ✅ normalize role
     localStorage.setItem('username', user.username);
     localStorage.setItem('email', user.email);
 
@@ -20,5 +20,3 @@ export const loginUser = async (credentials) => {
     throw error.response?.data || { message: 'Login failed. Try again.' };
   }
 };
-
-
