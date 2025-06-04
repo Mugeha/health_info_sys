@@ -9,7 +9,7 @@ const PrivateRoute = ({ children, allowedRoles = [] }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-const role = localStorage.getItem('role')?.toLowerCase();
+    let role = localStorage.getItem('role');
 
     if (!token) {
       navigate('/login');
@@ -28,7 +28,9 @@ const role = localStorage.getItem('role')?.toLowerCase();
         return;
       }
 
-      // Check if role is allowed
+      // Normalize role
+      role = role?.toLowerCase();
+
       if (allowedRoles.length && !allowedRoles.includes(role)) {
         toast.error('Access denied.');
         navigate('/dashboard');
@@ -47,6 +49,5 @@ const role = localStorage.getItem('role')?.toLowerCase();
 
   return children;
 };
-
 
 export default PrivateRoute;
