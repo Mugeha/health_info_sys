@@ -9,7 +9,7 @@ const PrivateRoute = ({ children, allowedRoles = [] }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
+const role = localStorage.getItem('role')?.toLowerCase();
 
     if (!token) {
       navigate('/login');

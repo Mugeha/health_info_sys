@@ -24,27 +24,31 @@ const Login = () => {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const { token, role } = await loginUser(formData); // must return { token, role }
+  e.preventDefault();
+  try {
+    const { token, role } = await loginUser(formData); // must return { token, role }
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
+    // Normalize role to lowercase
+    const normalizedRole = role?.toLowerCase();
 
-      toast.success('Login successful!', {
-        position: 'top-right',
-        autoClose: 2000,
-      });
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', normalizedRole);
 
-      navigate('/dashboard');
-    } catch (error) {
-      toast.error('Login failed. Check your credentials.', {
-        position: 'top-right',
-        autoClose: 3000,
-      });
-      console.error(error);
-    }
-  };
+    toast.success('Login successful!', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+
+    navigate('/dashboard');
+  } catch (error) {
+    toast.error('Login failed. Check your credentials.', {
+      position: 'top-right',
+      autoClose: 3000,
+    });
+    console.error(error);
+  }
+};
+
 
   return (
     <div className="login-container">
