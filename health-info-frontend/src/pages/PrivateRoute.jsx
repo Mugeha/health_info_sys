@@ -6,12 +6,14 @@ import toast from 'react-hot-toast';
 const PrivateRoute = ({ children, allowedRoles = [] }) => {
   const navigate = useNavigate();
   const [isChecking, setIsChecking] = useState(true);
+  const [isAllowed, setIsAllowed] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     let role = localStorage.getItem('role');
 
     if (!token) {
+      toast.error('You need to log in.');
       navigate('/login');
       return;
     }
@@ -21,33 +23,32 @@ const PrivateRoute = ({ children, allowedRoles = [] }) => {
       const now = Date.now() / 1000;
 
       if (decoded.exp < now) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
+        localStorage.clear();
         toast.error('Session expired. Please log in again.');
         navigate('/login');
         return;
       }
 
-      // Normalize role
       role = role?.toLowerCase();
 
       if (allowedRoles.length && !allowedRoles.includes(role)) {
-        toast.error('Access denied.');
-        navigate('/dashboard');
+        toast.error('Access denied: not authorized for this page.');
+        navigate('/unauthorized'); // ✅ Redirect to a proper "unauthorized" page
         return;
       }
 
-      setIsChecking(false);
+      setIsAllowed(true);
     } catch (err) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
+      console.error('JWT decoding failed:', err);
+      localStorage.clear();
       navigate('/login');
+    } finally {
+      setIsChecking(false);
     }
   }, [navigate, allowedRoles]);
 
   if (isChecking) return null;
-
-  return children;
+  return isAllowed ? children : null;
 };
 
 export default PrivateRoute;

@@ -13,14 +13,16 @@ const LoginRedirectGuard = ({ children }) => {
       try {
         const decoded = jwtDecode(token);
         const now = Date.now() / 1000;
+console.log("🛑 Token Exp:", decoded.exp, "| Now:", now);
 
-        if (decoded.exp > now) {
-          console.log('🔐 User already logged in. Redirecting to dashboard...');
-          setIsAuthenticated(true);
-        } else {
-          console.log('⏰ Token expired. Clearing localStorage...');
-          localStorage.clear();
-        }
+if (decoded.exp > now) {
+  console.log("🔐 User already logged in. Redirecting to dashboard...");
+  return <Navigate to="/dashboard" />;
+} else {
+  console.warn("⚠️ Token expired. Clearing localStorage...");
+  localStorage.clear(); // safer
+}
+
       } catch (err) {
         console.error('❌ Token decode failed:', err);
         localStorage.clear();
