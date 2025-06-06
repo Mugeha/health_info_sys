@@ -141,6 +141,11 @@ const user = await User.findOne({
 
     if (!user) return res.status(400).json({ message: 'Invalid or expired token' });
 
+    if (!newPassword || newPassword.length < 8) {
+  return res.status(400).json({ message: 'Password must be at least 8 characters long' });
+}
+
+
     user.password = newPassword;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
