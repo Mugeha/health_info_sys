@@ -8,8 +8,9 @@ const { getClientAnalyticsSummary } = require('../controllers/analyticsControlle
 router.get(
   '/summary',
   protect,
-  authorizeRoles('doctor'), // Or 'admin', 'staff', etc. if you want
+  authorizeRoles('admin'),  // ✅ Fixed this line
   getClientAnalyticsSummary
 );
+
 
 module.exports = router;

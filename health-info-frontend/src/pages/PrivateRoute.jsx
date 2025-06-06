@@ -10,36 +10,32 @@ const PrivateRoute = ({ children, allowedRoles = [] }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    let role = localStorage.getItem('role');
 
     if (!token) {
       toast.error('You need to log in.');
-      navigate('/login');
-      return;
+      return navigate('/login');
     }
 
     try {
       const decoded = jwtDecode(token);
       const now = Date.now() / 1000;
 
-      if (decoded.exp < now) {
+      if (!decoded.exp || isNaN(decoded.exp) || decoded.exp < now) {
         localStorage.clear();
         toast.error('Session expired. Please log in again.');
-        navigate('/login');
-        return;
+        return navigate('/login');
       }
 
-      role = role?.toLowerCase();
+      const storedRole = localStorage.getItem('role')?.toLowerCase();
 
-      if (allowedRoles.length && !allowedRoles.includes(role)) {
-        toast.error('Access denied: not authorized for this page.');
-        navigate('/unauthorized'); // ✅ Redirect to a proper "unauthorized" page
-        return;
+      if (allowedRoles.length && !allowedRoles.includes(storedRole)) {
+        toast.error('Access denied: Not authorized.');
+        return navigate('/unauthorized');
       }
 
       setIsAllowed(true);
     } catch (err) {
-      console.error('JWT decoding failed:', err);
+      console.error('❌ Token decoding failed:', err);
       localStorage.clear();
       navigate('/login');
     } finally {
@@ -47,7 +43,7 @@ const PrivateRoute = ({ children, allowedRoles = [] }) => {
     }
   }, [navigate, allowedRoles]);
 
-  if (isChecking) return null;
+  if (isChecking) return null; // Or show a loader like: <div>Loading...</div>
   return isAllowed ? children : null;
 };
 
