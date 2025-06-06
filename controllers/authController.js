@@ -17,8 +17,6 @@ const generateToken = (user) => {
   );
 };
 
-
-
 exports.registerDoctor = async (req, res) => {
   const { username, email, password, role = 'admin' } = req.body; // Default to 'admin' or 'doctor'
 
@@ -96,14 +94,19 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'No user found with that email' });
 
-    const token = crypto.randomBytes(32).toString('hex');
-    const expiry = Date.now() + 3600000;
+    const resetToken = crypto.randomBytes(32).toString('hex');
 
-    user.resetPasswordToken = token;
-    user.resetPasswordExpires = expiry;
-    await user.save();
+// Hash the token to store in DB
+const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+const expiry = Date.now() + 3600000; // 1 hour
 
-    const resetURL = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+user.resetPasswordToken = hashedToken;
+user.resetPasswordExpires = expiry;
+await user.save();
+
+// Send the plain token in the reset link (frontend will send it back)
+const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+
 
     const html = `
       <p>You requested a password reset</p>
