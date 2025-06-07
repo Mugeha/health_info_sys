@@ -29,15 +29,15 @@ const AddClient = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // Validate contact number before submission
   const { contact } = form;
 
-  if (!/^07\d{8}$/.test(contact)) {
-    setMessage('❌ Contact must be 10 digits and start with 07');
+  // Validate Kenyan mobile numbers
+  if (!/^(07|01)\d{8}$/.test(contact)) {
+    setMessage('❌ Contact must start with 07 or 01 and be 10 digits long');
     return;
   }
 
-  // Convert to +254 format
+  // Format into international +254 format
   const formattedContact = `+254${contact.slice(1)}`;
 
   try {
@@ -59,6 +59,7 @@ const AddClient = () => {
     setMessage('❌ Failed to add client');
   }
 };
+
 
 
   return (
