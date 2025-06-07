@@ -6,11 +6,20 @@ exports.registerClient = async (req, res) => {
 
   try {
     const client = await Client.create({ name, age, gender, contact });
-    res.status(201).json(client);
+    res.status(201).json({
+      message: 'Client registered',
+      client: {
+        publicId: client.publicId,
+        name: client.name,
+        age: client.age,
+        gender: client.gender
+      }
+    });
   } catch (err) {
     res.status(500).json({ message: 'Error registering client', error: err.message });
   }
-};  
+};
+ 
 
 exports.getClients = async (req, res) => {
   const search = req.query.name;
