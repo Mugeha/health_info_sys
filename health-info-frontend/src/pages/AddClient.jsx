@@ -91,14 +91,15 @@ const AddClient = () => {
           onChange={handleChange}
           required
         />
-        <input
-          style={styles.input}
-          name="contact"
-          placeholder="Contact Info"
-          value={form.contact}
-          onChange={handleChange}
-          required
-        />
+       <input
+  style={styles.input}
+  name="contact"
+  placeholder="07XXXXXXXX"
+  value={form.contact}
+  onChange={handleChange}
+  required
+/>
+
         <button type="submit" style={styles.button}>Add Client</button>
       </form>
       {message && <p style={styles.message}>{message}</p>}
