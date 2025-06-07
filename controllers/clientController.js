@@ -83,21 +83,19 @@ exports.getPublicClientProfile = async (req, res) => {
 
 exports.searchClientsPublic = async (req, res) => {
   const { name } = req.query;
-  console.log('Name searched:', name);
-
 
   try {
     const clients = name
-      ? await Client.find({ name: { $regex: name, $options: 'i' } }).select('name age gender')
+      ? await Client.find({ name: { $regex: name, $options: 'i' } })
+          .select('name age gender publicId')
       : [];
 
     res.status(200).json(clients);
   } catch (err) {
-    console.error('Search error:', err);
-
     res.status(500).json({ message: 'Error searching clients', error: err.message });
   }
 };
+
 exports.deleteClient = async (req, res) => {
   try {
     const client = await Client.findByIdAndDelete(req.params.id);
