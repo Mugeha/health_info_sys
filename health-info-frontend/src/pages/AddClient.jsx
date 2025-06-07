@@ -27,25 +27,39 @@ const AddClient = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:5000/api/clients', form, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  e.preventDefault();
 
-      const newClientId = res.data._id;
-      setMessage(`✅ Client ${res.data.name} added!`);
+  // Validate contact number before submission
+  const { contact } = form;
 
-      // redirect to enroll page
-      setTimeout(() => {
-        navigate(`/clients/${newClientId}/enroll`);
-      }, 1000);
+  if (!/^07\d{8}$/.test(contact)) {
+    setMessage('❌ Contact must be 10 digits and start with 07');
+    return;
+  }
 
-      setForm({ name: '', age: '', gender: '', contact: '' });
-    } catch (err) {
-      setMessage('❌ Failed to add client');
-    }
-  };
+  // Convert to +254 format
+  const formattedContact = `+254${contact.slice(1)}`;
+
+  try {
+    const res = await axios.post(
+      'http://localhost:5000/api/clients',
+      { ...form, contact: formattedContact },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    const newClientId = res.data._id;
+    setMessage(`✅ Client ${res.data.name} added!`);
+
+    setTimeout(() => {
+      navigate(`/clients/${newClientId}/enroll`);
+    }, 1000);
+
+    setForm({ name: '', age: '', gender: '', contact: '' });
+  } catch (err) {
+    setMessage('❌ Failed to add client');
+  }
+};
+
 
   return (
     <div style={styles.container}>
