@@ -10,8 +10,21 @@ const AddClient = () => {
   const navigate = useNavigate(); // ✅ initialize navigation
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const { name, value } = e.target;
+
+  if (name === 'contact') {
+    // Strip out any non-digits
+    const digitsOnly = value.replace(/\D/g, '');
+
+    // Only allow up to 10 digits
+    if (digitsOnly.length <= 10) {
+      setForm({ ...form, contact: digitsOnly });
+    }
+  } else {
+    setForm({ ...form, [name]: value });
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
