@@ -60,6 +60,12 @@ const ClientProfile = () => {
   }
 };
 
+      // Converts 0712345678 to 0712 345 678
+const formatPhone = (number) => {
+  const clean = number.replace(/\s+/g, '');
+  return `${clean.slice(0, 4)} ${clean.slice(4, 7)} ${clean.slice(7)}`;
+};
+
 if (error) {
   return (
     <div className="full-error-page">
@@ -80,7 +86,16 @@ if (error) {
       <p><strong>Name:</strong> {client.name}</p>
       <p><strong>Age:</strong> {client.age}</p>
       <p><strong>Gender:</strong> {client.gender}</p>
-      <p><strong>Contact:</strong> {client.contact}</p>
+
+
+<p><strong>Contact:</strong> {formatPhone(
+  client.contact.startsWith('+254')
+    ? client.contact.replace('+254', '0')
+    : client.contact.startsWith('254')
+      ? client.contact.replace('254', '0')
+      : client.contact
+)}</p>
+
 
       <h3 className="program-title">Enrolled Programs:</h3>
       <ul>
