@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
+const { nanoid } = require('nanoid'); // install this with `npm install nanoid`
 
 const clientSchema = new mongoose.Schema({
   publicId: {
     type: String,
-    default: uuidv4,
-    unique: true,
-    index: true,
+    default: () => nanoid(10), // e.g., "6f9K3L5aQb"
+    unique: true
   },
   name: {
     type: String,
