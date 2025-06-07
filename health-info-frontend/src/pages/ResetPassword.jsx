@@ -8,6 +8,7 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const { token } = useParams();
   const navigate = useNavigate();
 
@@ -25,11 +26,12 @@ const ResetPassword = () => {
 
     if (!validatePassword(newPassword)) {
       setMessage(
-        'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.'
+        '❌ Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.'
       );
       return;
     }
 
+    setLoading(true);
     try {
       await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, {
         newPassword,
@@ -38,7 +40,9 @@ const ResetPassword = () => {
       setMessage('✅ Password reset successful! Redirecting...');
       setTimeout(() => navigate('/login'), 2000);
     } catch (err) {
-      setMessage(err.response?.data?.message || 'Reset failed.');
+      setMessage(err.response?.data?.message || '❌ Reset failed.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,20 +62,26 @@ const ResetPassword = () => {
             className="toggle-visibility"
             onClick={() => setShowPassword((prev) => !prev)}
             title={showPassword ? 'Hide Password' : 'Show Password'}
-            style={{
-              position: 'absolute',
-              right: '12px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              cursor: 'pointer',
-              color: '#555',
-            }}
           >
             {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
           </span>
         </div>
-        <button type="submit">Reset</button>
-        {message && <p className="message">{message}</p>}
+
+        <ul className="password-rules">
+          <li className={newPassword.length >= 8 ? 'valid' : ''}>✓ At least 8 characters</li>
+          <li className={/[A-Z]/.test(newPassword) ? 'valid' : ''}>✓ One uppercase letter</li>
+          <li className={/[a-z]/.test(newPassword) ? 'valid' : ''}>✓ One lowercase letter</li>
+          <li className={/[0-9]/.test(newPassword) ? 'valid' : ''}>✓ One number</li>
+          <li className={/[!@#$%^&*(),.?":{}|<>]/.test(newPassword) ? 'valid' : ''}>
+            ✓ One special character
+          </li>
+        </ul>
+
+        <button type="submit" disabled={loading}>
+          {loading ? 'Resetting...' : 'Reset'}
+        </button>
+
+        {message && <p className={`message ${message.includes('✅') ? 'success' : 'error'}`}>{message}</p>}
       </form>
     </div>
   );
