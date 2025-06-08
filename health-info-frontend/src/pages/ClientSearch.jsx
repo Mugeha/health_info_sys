@@ -36,11 +36,13 @@ const ClientSearch = () => {
       <h2>🔍 Search Clients</h2>
       <div className="search-bar">
         <input
-          type="text"
-          placeholder="Enter client name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+  type="text"
+  placeholder="Enter client name"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+/>
+
         <button onClick={handleSearch}>Search</button>
       </div>
       <div className="results">
