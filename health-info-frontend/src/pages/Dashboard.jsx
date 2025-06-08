@@ -45,8 +45,9 @@ const decoded = jwtDecode(token);
     <div className="dashboard-container">
   <div className="dashboard-header">
     <h1 className="dashboard-title">
-      Welcome, {role === 'admin' ? 'Admin 🛡️' : 'Staff 🧑‍⚕️'}
-    </h1>
+  Welcome, {role === 'admin' ? 'Admin 🛡️' : role === 'staff' ? 'Staff 🧑‍⚕️' : 'Guest 🙋'}
+</h1>
+
     <button onClick={handleLogout} className="logout-button">🚪 Logout</button>
   </div>
 
