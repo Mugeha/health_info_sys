@@ -8,22 +8,26 @@ const ClientSearch = () => {
   const navigate = useNavigate();
 
   const handleSearch = async () => {
-    try {
-      const res = await fetch(`http://localhost:5000/api/clients/public-search?name=${searchTerm}`);
-      const data = await res.json();
-      console.log('Search response:', data);
+  const trimmed = searchTerm.trim();
+  if (!trimmed) return;
 
-      if (Array.isArray(data)) {
-        setResults(data);
-      } else {
-        console.warn('Unexpected data format:', data);
-        setResults([]);
-      }
-    } catch (err) {
-      console.error('Error searching clients:', err);
+  try {
+    const res = await fetch(`http://localhost:5000/api/clients/public-search?name=${trimmed}`);
+    const data = await res.json();
+    console.log('Search response:', data);
+
+    if (Array.isArray(data)) {
+      setResults(data);
+    } else {
+      console.warn('Unexpected data format:', data);
       setResults([]);
     }
-  };
+  } catch (err) {
+    console.error('Error searching clients:', err);
+    setResults([]);
+  }
+};
+
 
   const viewProfile = (id) => {
     navigate(`/clients/${id}`);
