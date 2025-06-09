@@ -91,70 +91,18 @@ npm run dev
 
 - Backend API: http://localhost:5000/api/clients
 
+## 🔐 Authentication Roles
+Admin 🛡️
+
+Staff 🧑‍⚕️
+
+Guest 🙋
+
+Each role sees a personalized dashboard greeting.
+
+## 📸 Project Screenshots
 
 
-
-- Create a .env file:
-
-- env
-- Copy
-- Edit
-- PORT=5000
-- MONGO_URI=your_mongodb_connection_string
-- JWT_SECRET=your_jwt_secret
-- Run the server
-
-- bash
-- Copy
-- Edit
-- npm run dev
-  
-🔑 API Routes
-🧑‍⚕️ Auth
-POST /api/auth/signup – Register doctor
-
-POST /api/auth/login – Login doctor
-
-Test Register doctor with postman
-![Register doctor](Images/Registerdoctor.png)
-Test Login doctor with postman
-![Login doctor](Images/login.png)
-
-💊 Programs
-POST /api/programs – Create program
-Test Create Program with postman
-![Create Program](Images/CreateProgram.png)
-
-GET /api/programs – Get all programs
-
-🧍 Clients
-POST /api/clients – Register client
-
-GET /api/clients – Search/list clients
-Test get clients api with postman
-![GetClients](Images/getClients.png)
-
-GET /api/clients/:id – View client profile
-Test get client profile with postman
-![GetClientProfile](Images/GetClientProfile.png)
-
-
-POST /api/clients/:id/enroll – Enroll client in programs
-Test enroll client in a program with postman
-![EnrollInProgram](Images/EnrollInProgram.png)
-🌐 Public
-GET /api/public/client/:id – View public client profile (no auth)
-![Public Profile Preview](Images/getPublicProfile.png)
-
-🧪 Sample Request: Enroll a Client
-
-- POST /api/clients/:id/enroll
-- Authorization: Bearer <token>
-- Content-Type: application/json
-
-{
-  "programIds": ["<programId1>", "<programId2>"]
-}
 
 
 ## 👩‍⚕️ User Flow / Experience:
