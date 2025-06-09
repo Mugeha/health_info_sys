@@ -58,12 +58,42 @@ REACT_APP_API_BASE_URL=https://your-backend-url.onrender.com
 ## 📦 Setup Instructions
 
 1. Clone the repo
-- bash
-- git clone https://github.com/your-username/health-info-system.git
-- cd health-info-system
-- Install dependencies
 
-- npm install
+```bash
+git clone https://github.com/your-username/health-info-system.git
+cd health-info-system
+Install dependencies
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Create a .env file and add the following:
+
+```bash
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+4. Start the server
+
+```bash
+npm run dev
+```
+
+## 📦 Test the app locally
+
+- Frontend: http://localhost:3000
+
+- Backend API: http://localhost:5000/api/clients
+
+
+
+
 - Create a .env file:
 
 - env
