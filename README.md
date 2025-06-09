@@ -135,12 +135,14 @@ These are some extra features and enhancements planned for the next phase:
 
 📅 Program timelines and progress tracking
 
-📊 Dashboard with analytics for program impact
-
 🗒️ Client visit history and reports
-
-🖥️ Fully responsive frontend using React.js
 
 📂 Export data (PDF/CSV) for reporting
 
-📲 Mobile-friendly version or mobile app support
+## 🧠 Contributions & Feedback
+
+If you have ideas, bugs, or feedback, open an issue or PR. Let’s make it better together.
+
+## 📄 License
+
+MIT License
