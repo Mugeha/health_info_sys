@@ -102,7 +102,7 @@ Each role sees a personalized dashboard greeting.
 
 ## 📸 Project Screenshots
 
-![LoginPage](Images/Loginpagepng)  
+![LoginPage](Images/Loginpage.png)  
 ![Dashboard View](Images/Dashboard.png)  
 ![Clients List](Images/Clients.png)  
 ![Add Client](Images/AddClient.png)  
@@ -112,35 +112,16 @@ Each role sees a personalized dashboard greeting.
 
 
 ## 👩‍⚕️ User Flow / Experience:
-Login/Access:
 
-The doctor logs in securely (JWT-based auth is assumed).
+Login with doctor credentials
 
-Lands on a personalized dashboard: "Welcome, Doctor 👨‍⚕️"
+Dashboard: View client summary, access features
 
-Dashboard Options:
+Add Client: Fill out form, auto-redirect to Clients list
 
-📋 View Clients — Navigate to a list of all registered clients (pulled from backend).
+View Clients: Scroll/search through registered patients
 
-➕ Add Client — Opens a form to register a new client.
-
-🔍 Search Client (Public) — Search bar to find a client quickly (ideal for public directory or faster access).
-
-Adding a Client:
-
-Doctor clicks “Add Client”.
-
-Fills out a form with name, age, gender, and contact info.
-
-Hits "Submit" — data is sent to a Node.js/Express backend and saved in a MongoDB (or other DB).
-
-After successful submission, doctor is auto-redirected to the Clients list.
-
-Viewing Clients:
-
-Clients page shows a table/list of clients fetched from the backend.
-
-Easy to scroll through and see client details.
+Enroll in Programs: Assign one or more programs to each client
 
 ## 🔮 Future Improvements
 
@@ -157,8 +138,6 @@ These are some extra features and enhancements planned for the next phase:
 📊 Dashboard with analytics for program impact
 
 🗒️ Client visit history and reports
-
-🔒 Role-based access control (admin, doctor, support staff)
 
 🖥️ Fully responsive frontend using React.js
 
