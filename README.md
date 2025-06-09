@@ -102,12 +102,13 @@ Each role sees a personalized dashboard greeting.
 
 ## 📸 Project Screenshots
 
-![Dashboard View](Images/dashboard.png)  
-![Clients List](Images/clients.png)  
-![Add Client](Images/add-client.png)  
-![Client Profile](Images/client-profile.png)  
-![Enroll Client](Images/enroll-client.png)  
-
+![LoginPage](Images/Loginpagepng)  
+![Dashboard View](Images/Dashboard.png)  
+![Clients List](Images/Clients.png)  
+![Add Client](Images/AddClient.png)  
+![Programs](Images/Programs.png)  
+![Analytics](Images/Analytics.png)  
+![Search Clients](Images/SearchClient.png)  
 
 
 ## 👩‍⚕️ User Flow / Experience:
