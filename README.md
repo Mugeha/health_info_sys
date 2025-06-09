@@ -1,6 +1,6 @@
 # 🏥 Health Info System
 
-A basic Health Information Management System for doctors to manage clients and enroll them into health programs like TB, Malaria, HIV, etc.
+A full-stack Health Information Management System designed for doctors to manage clients and enroll them in programs like TB, Malaria, and HIV.
 
 Link to powerpoint
 [View Presentation](https://docs.google.com/presentation/d/1d0M4rmyCG8op7vEPvlCEHliWgL34ZRUhx_TfuKSaU3k/edit?usp=sharing)
