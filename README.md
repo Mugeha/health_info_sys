@@ -49,6 +49,12 @@ JWT_SECRET=your_jwt_secret
 
 ```
 
+### 💻 Frontend .env
+
+```env
+REACT_APP_API_BASE_URL=https://your-backend-url.onrender.com
+```
+
 ## 📦 Setup Instructions
 
 1. Clone the repo
