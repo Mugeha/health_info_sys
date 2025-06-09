@@ -38,6 +38,17 @@ Link to powerpoint
 
 ---
 
+## ⚙️ Environment Variables
+
+### 📦 Backend `.env` (example)
+
+```env
+MONGO_URI=your_mongodb_uri
+PORT=5000
+JWT_SECRET=your_jwt_secret
+
+```
+
 ## 📦 Setup Instructions
 
 1. Clone the repo
