@@ -15,12 +15,14 @@ Link to powerpoint
 
 ## ✨ Features
 
-- 🩺 Create and manage health programs
-- 👤 Register and search for clients
-- 📚 Enroll clients into programs
-- 🔍 View client profiles (with enrolled programs)
-- 🌐 Public API to expose client profile
-- 🔐 JWT-authenticated system (doctor login)
+- 🔐 **Authentication**: Staff/Admin login with JWT
+- 🩺 **Health Programs**: Create and manage health programs
+- 📚 **Enroll clients**: Enroll clients into programs
+- 🧍‍♂️ **Client Profiles**: View client profiles (with enrolled programs)
+- 🔍 **Search Clients**: Public and internal search by name
+- 📞 **Phone Format**: Supports both `07xxx` and `2547xxx` formats
+- ⭐ **User Roles**: Dynamic dashboard greetings (Admin, Staff, Guest)
+- 🌐 **Responsive Design**: Works well on all screen sizes
 
 ---
 
