@@ -28,9 +28,13 @@ Link to powerpoint
 
 ## 🚀 Tech Stack
 
-- Node.js + Express
-- MongoDB + Mongoose
-- JWT for Authentication
+| Layer       | Tech                  |
+|-------------|-----------------------|
+| Frontend    | React, CSS Modules    |
+| Backend     | Node.js, Express.js   |
+| Database    | MongoDB Atlas         |
+| Deployment  | Render (Backend), Netlify or Vercel (Frontend) |
+| Auth        | JWT                   |
 
 ---
 
