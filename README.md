@@ -117,7 +117,7 @@ Each role sees a personalized dashboard greeting.
 
 - Dashboard: View client summary, access features
 
-Add Client: Fill out form, auto-redirect to Clients list
+- Add Client: Fill out form, auto-redirect to Clients list
 
 View Clients: Scroll/search through registered patients
 
