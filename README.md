@@ -119,7 +119,7 @@ Each role sees a personalized dashboard greeting.
 
 - Add Client: Fill out form, auto-redirect to Clients list
 
-View Clients: Scroll/search through registered patients
+- View Clients: Scroll/search through registered patients
 
 Enroll in Programs: Assign one or more programs to each client
 
