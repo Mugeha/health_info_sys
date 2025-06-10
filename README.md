@@ -115,7 +115,7 @@ Each role sees a personalized dashboard greeting.
 
 - Login with doctor credentials
 
-Dashboard: View client summary, access features
+- Dashboard: View client summary, access features
 
 Add Client: Fill out form, auto-redirect to Clients list
 
