@@ -96,7 +96,7 @@ npm run dev
 
 - Staff 🧑‍⚕️
 
-Guest 🙋
+- Guest 🙋
 
 Each role sees a personalized dashboard greeting.
 
