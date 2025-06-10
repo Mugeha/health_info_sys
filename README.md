@@ -92,7 +92,7 @@ npm run dev
 - Backend API: http://localhost:5000/api/clients
 
 ## 🔐 Authentication Roles
-Admin 🛡️
+- Admin 🛡️
 
 Staff 🧑‍⚕️
 
