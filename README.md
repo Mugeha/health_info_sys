@@ -113,7 +113,7 @@ Each role sees a personalized dashboard greeting.
 
 ## 👩‍⚕️ User Flow / Experience:
 
-Login with doctor credentials
+- Login with doctor credentials
 
 Dashboard: View client summary, access features
 
