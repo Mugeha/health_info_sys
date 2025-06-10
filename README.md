@@ -94,7 +94,7 @@ npm run dev
 ## 🔐 Authentication Roles
 - Admin 🛡️
 
-Staff 🧑‍⚕️
+- Staff 🧑‍⚕️
 
 Guest 🙋
 
