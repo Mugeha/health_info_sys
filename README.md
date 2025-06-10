@@ -121,7 +121,7 @@ Each role sees a personalized dashboard greeting.
 
 - View Clients: Scroll/search through registered patients
 
-Enroll in Programs: Assign one or more programs to each client
+- Enroll in Programs: Assign one or more programs to each client
 
 ## 🔮 Future Improvements
 
