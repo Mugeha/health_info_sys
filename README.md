@@ -15,7 +15,7 @@ Link to powerpoint
 
 ## Video walkthrough
 
-👉 [**loom video walkthrough**](https://your-render-url-here.com) ← _(Link will be updated after deployment)_
+👉 [**loom video walkthrough**](https://www.loom.com/share/c689eff1f8ed470280d2bc4afdbbefb5?sid=d8ea6846-cb2a-416b-8af1-dedd32b31462).
 
 ---
 
