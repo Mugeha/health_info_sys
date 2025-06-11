@@ -13,6 +13,12 @@ Link to powerpoint
 
 ---
 
+## Video walkthrough
+
+👉 [**loom video walkthrough**](https://your-render-url-here.com) ← _(Link will be updated after deployment)_
+
+---
+
 ## ✨ Features
 
 - 🔐 **Authentication**: Staff/Admin login with JWT
