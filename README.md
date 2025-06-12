@@ -143,7 +143,7 @@ These are some extra features and enhancements planned for the next phase:
 
 - 🗒️ Client visit history and reports
 
-📂 Export data (PDF/CSV) for reporting
+- 📂 Export data (PDF/CSV) for reporting
 
 ## 🧠 Contributions & Feedback
 
