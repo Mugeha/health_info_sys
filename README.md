@@ -137,7 +137,7 @@ These are some extra features and enhancements planned for the next phase:
 
 - 🗓️ Appointment scheduling between clients and doctors
 
-💬 Messaging/chat between doctor and client
+- 💬 Messaging/chat between doctor and client
 
 📅 Program timelines and progress tracking
 
