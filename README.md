@@ -135,7 +135,7 @@ These are some extra features and enhancements planned for the next phase:
 
 - 🧑‍⚕️ Doctor profile management with update/delete
 
-🗓️ Appointment scheduling between clients and doctors
+- 🗓️ Appointment scheduling between clients and doctors
 
 💬 Messaging/chat between doctor and client
 
