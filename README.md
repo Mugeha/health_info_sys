@@ -141,7 +141,7 @@ These are some extra features and enhancements planned for the next phase:
 
 - 📅 Program timelines and progress tracking
 
-🗒️ Client visit history and reports
+- 🗒️ Client visit history and reports
 
 📂 Export data (PDF/CSV) for reporting
 
