@@ -139,7 +139,7 @@ These are some extra features and enhancements planned for the next phase:
 
 - 💬 Messaging/chat between doctor and client
 
-📅 Program timelines and progress tracking
+- 📅 Program timelines and progress tracking
 
 🗒️ Client visit history and reports
 
